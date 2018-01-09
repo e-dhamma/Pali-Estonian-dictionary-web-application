@@ -10,9 +10,13 @@
         <v-layout v-for='meaning in meanings'>
             <v-flex>
                 <h3>{{ meaning.est }} [skr {{ meaning.root }}]</h3>
-                <p><i>inglise keeles</i></p>
-                <p>Siin on sisuline selgitus.</p>
+                <p><i>{{ meaning.eng }}</i></p>
+                <p>{{ meaning.expl }}</p>
                 <v-btn flat small fab @click.stop="meaning.showMore = !meaning.showMore"><v-icon>keyboard_arrow_down</v-icon></v-btn>
+                <div>
+                    <p>{{ meaning.further }}</p>
+                    <p>examples</p>
+                </div>
             </v-flex>
         </v-layout>
 
@@ -25,8 +29,8 @@
     data () {
       return {
         meanings: [
-            { est: "esimene tõlge", root: "skrskr", eng: 'in English', expl: 'Siin on selgitud', further: '', show: false },
-            { est: "teine tõlge", root: "skrskr", eng: 'in English', expl: 'Siin on veel üks selgitus', further: '', show: false },
+            { est: "esimene tõlge", root: "skrskr", eng: 'in English', expl: 'Siin on selgitud', further: 'more info',examples: [['algtekst', 'tõlge'], ['teine algtekst', 'teine tõlge']], show: false },
+            { est: "teine tõlge", root: "skrskr", eng: 'in English', expl: 'Siin on veel üks selgitus', further: 'even more info', show: false },
 
         ]
       }
