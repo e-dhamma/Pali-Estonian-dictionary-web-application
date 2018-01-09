@@ -50,7 +50,8 @@
           { icon: "toc", title: "Rohkem", link: '' },
           { icon: "notifications", title: "Teavitused", link: '' },
           { icon: "account_circle", title: "Logi sisse", link: '' },
-        ]
+        ],
+        drawer: null
       }
     }
   }

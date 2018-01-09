@@ -12,14 +12,19 @@
                 <h3>{{ meaning.est }} [skr {{ meaning.root }}]</h3>
                 <p><i>{{ meaning.eng }}</i></p>
                 <p>{{ meaning.expl }}</p>
-                <v-btn flat small fab @click.stop="meaning.showMore = !meaning.showMore"><v-icon>keyboard_arrow_down</v-icon></v-btn>
-                <div>
-                    <p>{{ meaning.further }}</p>
-                    <p>examples</p>
-                </div>
+                <v-expansion-panel>
+                    <v-expansion-panel-content>
+                        <div slot="header">Täpsemalt</div>
+                        <v-card>
+                            <v-card-text class="grey lighten-4">
+                                {{ meaning.further }}
+                                <div>{{ meaning.examples }}</div>
+                            </v-card-text>
+                        </v-card>
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
             </v-flex>
         </v-layout>
-
 
     </v-container>
 </template>
@@ -29,8 +34,8 @@
     data () {
       return {
         meanings: [
-            { est: "esimene tõlge", root: "skrskr", eng: 'in English', expl: 'Siin on selgitud', further: 'more info',examples: [['algtekst', 'tõlge'], ['teine algtekst', 'teine tõlge']], show: false },
-            { est: "teine tõlge", root: "skrskr", eng: 'in English', expl: 'Siin on veel üks selgitus', further: 'even more info', show: false },
+            { est: "esimene tõlge", root: "skrskr", eng: 'in English', expl: 'Siin on selgitud', further: 'more info', examples: 'fgh' },
+            { est: "teine tõlge", root: "skrskr", eng: 'in English', expl: 'Siin on veel üks selgitus', further: 'even more info' },
 
         ]
       }
