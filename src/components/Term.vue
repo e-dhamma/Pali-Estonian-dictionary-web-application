@@ -3,13 +3,13 @@
 
         <v-layout>
             <v-flex>
-                <h1>Pali <v-icon>play_arrow</v-icon></h1>
+                <h1><i>Pali</i><v-icon>play_arrow</v-icon></h1>
             </v-flex>
         </v-layout>
 
-        <v-layout v-for='meaning in meanings' class='mt-3'>
+        <v-layout v-for='(meaning, i) in meanings' class='mt-3'>
             <v-flex>
-                <h3>{{ meaning.est }} [skr {{ meaning.root }}]</h3>
+                <h3>{{ i + 1}}. {{ meaning.est }} [skr <i>{{ meaning.root }}</i>]</h3>
                 <p><i>{{ meaning.eng }}</i></p>
                 <p>{{ meaning.expl }}</p>
                 <v-expansion-panel>

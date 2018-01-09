@@ -18,10 +18,10 @@
 
       <v-layout row wrap class='mt-2'>
             <v-flex class='text-xs-center text-sm-right'>
-                <v-btn router to="/">Üks nupp</v-btn>
+                <v-btn  to="/kasutajale">Teave kasutajale</v-btn>
             </v-flex>
             <v-flex class='text-xs-center text-sm-left'>
-                <v-btn router to="/">Teine nupp</v-btn>
+                <v-btn  to="/">Teine nupp</v-btn>
             </v-flex>
 
       </v-layout>
