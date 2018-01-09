@@ -16,7 +16,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/mõiste',
+      path: '/termin',
       name: 'Term',
       component: Term
     },
@@ -25,8 +25,6 @@ export default new Router({
       name: 'SignUp',
       component: SignUp
     }
-
-
   ],
   mode: 'history'
 })
