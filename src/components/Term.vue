@@ -33,10 +33,22 @@
         </v-layout>
         <hr class='mt-4'>
         <div v-for='(comment, i) in term.comments' :key='i' class='mt-2'>
-            <b>{{ comment.author }}:</b> {{ comment.content}}<br>{{ comment.date }}
-            </div>
-
+            <p><b>{{ comment.author }}:</b> {{ comment.content}}<br>{{ comment.date }}</p>
         </div>
+
+        <v-expansion-panel>
+            <v-expansion-panel-content>
+                <div slot="header">Tõlkijate arutelu</div>
+                <v-card>
+                    <v-card-text>
+                        <div v-for='(message, i) in term.translatorsChats' :key='i'>
+                            <p><b>{{ message.author }}:</b> {{ message.content}}<br>{{ message.date }}</p>
+                        </div>
+                    </v-card-text>
+                </v-card>
+            </v-expansion-panel-content>
+        </v-expansion-panel>
+
     </v-container>
 </template>
 
@@ -53,6 +65,10 @@
                 comments: [
                     {author: 'Mari', date: '10.10.2017', content: 'Siin on kommentar.' },
                     {author: 'Juhan', date: '17.10.2017', content: 'Siin on teine kommentar.' }
+                ],
+                translatorsChats: [
+                    {author: 'Artur', date: '10.10.2017', content: 'Siin on tõlkija märkus.' },
+                    {author: 'Joosep', date: '10.10.2017', content: 'Siin on ühe teise tõlkija märkus.' },
                 ]
             }    
         }
