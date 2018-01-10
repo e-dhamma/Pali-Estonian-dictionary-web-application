@@ -31,20 +31,28 @@
                 </v-expansion-panel>
             </v-flex>
         </v-layout>
+        <hr class='mt-4'>
+        <div v-for='(comment, i) in comments' :key='i' class='mt-2'>
+            <b>{{ comment.author }}:</b> {{ comment.content}}<br>{{ comment.date }}
+            </div>
 
+        </div>
     </v-container>
 </template>
 
 <script>
   export default {
     data () {
-      return {
-        meanings: [
-            { est: "esimene tõlge", root: "skrskr", eng: 'in English', expl: 'Siin on selgitud', further: 'more info', examples: [{ original: 'in pali', translation: 'eestikeelne tõlge'}, { original: 'more in pali', translation: 'veel üks eestikeelne tõlge' } ] },
-            { est: "teine tõlge", root: "skrskr", eng: 'in English', expl: 'Siin on veel üks selgitus', further: 'even more info' },
-
-        ]
-      }
+        return {
+            meanings: [
+                { est: "esimene tõlge", root: "skrskr", eng: 'in English', expl: 'Siin on selgitud', further: 'more info', examples: [{ original: 'in pali', translation: 'eestikeelne tõlge'}, { original: 'more in pali', translation: 'veel üks eestikeelne tõlge' } ] },
+                { est: "teine tõlge", root: "skrskr", eng: 'in English', expl: 'Siin on veel üks selgitus', further: 'even more info' },
+            ],
+            comments: [
+                {author: 'Mari', date: '10.10.2017', content: 'Siin on kommentar.' },
+                {author: 'Juhan', date: '17.10.2017', content: 'Siin on teine kommentar.' }
+            ]     
+        }
     }
   }
 </script>
