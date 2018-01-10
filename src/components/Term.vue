@@ -53,32 +53,62 @@
 </template>
 
 <script>
-  export default {
-    data () {
-        return {
-            term: {
-                pali: 'paali keeles',
-                meanings: [
-                    { est: "esimene tõlge", root: "skrskr", eng: ['one English version', 'another translation'], expl: 'Siin on selgitud', further: 'more info', examples: [{ original: 'in pali', translation: 'eestikeelne tõlge'}, { original: 'more in pali', translation: 'veel üks eestikeelne tõlge' } ] },
-                    { est: "teine tõlge", root: "skrskr", eng: ['one English version', 'another translation'], expl: 'Siin on veel üks selgitus', further: 'even more info' },
-                ],
-                comments: [
-                    {author: 'Mari', date: '10.10.2017', content: 'Siin on kommentar.' },
-                    {author: 'Juhan', date: '17.10.2017', content: 'Siin on teine kommentar.' }
-                ],
-                translatorsChats: [
-                    {author: 'Artur', date: '10.10.2017', content: 'Siin on tõlkija märkus.' },
-                    {author: 'Joosep', date: '10.10.2017', content: 'Siin on ühe teise tõlkija märkus.' },
-                ]
-            }    
-        }
-    }
+export default {
+  data() {
+    return {
+      term: {
+        pali: "buddha",
+        meanings: [
+          {
+            est: "virgunu",
+            root: "budh",
+            eng: ["Buddha", "Enlightened One", "Awakened One"],
+            expl: "Teadvuse kõrgeima võimaliku seisundini jõudnud isik, kelle meelest on kadunud kõik meeleplekid, kes on vabanenud sansaarast ja jõudnud nirvaaasse. (viide)",
+            further: "D I.74 (sammā° õige, st (aasta-)ajale sobilik dušš; DA I.218=vuṭṭhi); II.15 (udakassa, vool, hoovus, voog); J I.31; Ps I.125 (udaka°); Pv II.970 (sammā°); VvA 4 (hingulika°); PvA 139; DhA IV.15 (assu°); Sdhp 595 (vassa°).",
+            examples: [
+              { original: "buddhang saranang gacchami.", translation: "Virgunu kaitse alla lähen." },
+            ]
+          },
+          {
+            est: "virgunu",
+            root: "budh",
+            eng: ["Buddha", "Enlightened One", "Awakened One"],
+            expl: "Teadvuse kõrgeima võimaliku seisundini jõudnud isik, kelle meelest on kadunud kõik meeleplekid, kes on vabanenud sansaarast ja jõudnud nirvaaasse. (viide)",
+            further: "D I.74 (sammā° õige, st (aasta-)ajale sobilik dušš; DA I.218=vuṭṭhi); II.15 (udakassa, vool, hoovus, voog); J I.31; Ps I.125 (udaka°); Pv II.970 (sammā°); VvA 4 (hingulika°); PvA 139; DhA IV.15 (assu°); Sdhp 595 (vassa°).",
+            examples: [
+              { original: "buddhang saranang gacchami.", translation: "Virgunu kaitse alla lähen." },
+            ]
+          },
+        ],
+        comments: [
+          { author: "Mari Kuuskemaa", date: "10.10.2017", content: "Kas sõna 'valgustunu' sobiks ka?" },
+          {
+            author: "Juhan Kivilaid",
+            date: "17.10.2017",
+            content: "Täpselt samast tuvest tulenevat sõna kasutatakse ka argieeles unest üles ärkamise kohta."
+          }
+        ],
+        translatorsChats: [
+          {
+            author: "Artur Ahta",
+            date: "10.10.2017",
+            content: "Sõna 'valgustunu' ei sobi, sest sõnatüvi ei tulene sõnast 'valgus'."
+          },
+          {
+            author: "Joosep Jaik",
+            date: "10.10.2017",
+            content: "Kõige täpsem tõlge oleks ehk hoopis 'ärganu', aga see ei kõla eriti hästi."
+          }
+        ]
+      }
+    };
   }
+};
 </script>
 
 
 <style scoped>
-    .intro {
-        font-size: 1.3em;
-    }
+.intro {
+  font-size: 1.3em;
+}
 </style>
