@@ -4,12 +4,12 @@
   </v-container>
 </template>
 
-<script>  
-export default {
-  computed: {
-    terms () {
-      return this.$store.getters.loadedTerms
+<script>
+  export default {
+    computed: {
+      terms () {
+        return this.$store.getters.loadedTerms
+      }
     }
   }
-}
 </script>

@@ -32,16 +32,66 @@
             </v-flex>
         </v-layout>
         <hr class='mt-4'>
-        <div v-for='(comment, i) in term.comments' :key='i' class='mt-2'>
+
+        <!-- Comments-->
+        <div v-for='(comment, i) in term.comments' :key='"c" + i' class='mt-2'>
             <p><b>{{ comment.author }}:</b> {{ comment.content}}<br>{{ comment.date }}</p>
         </div>
 
+        <!-- Add comment form-->
+        <hr mb2>
+        <v-layout><v-flex><h4>Lisa uus kommentar</h4></v-flex></v-layout>
+        <v-layout row>
+          <v-flex>
+            <form>
+              <v-layout row>
+                <v-flex xs12 sm4>
+                  <v-text-field
+                    name="name"
+                    label="Nimi"
+                    id='name'
+                    v-model='name'
+                    required
+                  ></v-text-field>                
+                </v-flex>
+                <v-flex xs12 sm4>
+                  <v-text-field
+                    name="email"
+                    label="E-mail"
+                    id='email'
+                    v-model='email'
+                    required
+                  ></v-text-field>                
+                </v-flex>
+              </v-layout>
+              <v-layout row>
+                <v-flex xs12 sm6>
+                  <v-text-field
+                    name="message"
+                    label="Sõnum"
+                    id='message'
+                    v-model='message'
+                    required
+                    multi-line
+                  ></v-text-field>                
+                </v-flex>
+              </v-layout>
+              <v-layout>
+                <v-flex>
+                  <v-btn :disabled='!formIsValid' @click.native='addComment' >Lisa kommentaar</v-btn>
+                </v-flex>
+              </v-layout>
+            </form>
+          </v-flex>
+        </v-layout>
+
+        <!-- Translator's discussion-->
         <v-expansion-panel>
             <v-expansion-panel-content>
                 <div slot="header">Tõlkijate arutelu</div>
                 <v-card>
                     <v-card-text>
-                        <div v-for='(message, i) in term.translatorsChats' :key='i'>
+                        <div v-for='(message, i) in term.translatorsChats' :key='"t" + i'>
                             <p><b>{{ message.author }}:</b> {{ message.content}}<br>{{ message.date }}</p>
                         </div>
                     </v-card-text>
@@ -54,10 +104,35 @@
 
 <script>
 export default {
+  data () {
+    return {
+      name: '',
+      email: '',
+      message: ''
+    }
+  },
   props: ['pali'],
   computed: {
     term () {
       return this.$store.getters.loadedTerm(this.pali)
+    },
+    formIsValid () {
+      return this.name !== '' && this.email !== '' && this.message !== ''
+    }
+  },
+  methods: {
+    addComment () {
+      const payload = {
+        term: this.term.pali,
+        comment: {
+          title: this.title,
+          email: this.email,
+          message: this.message,
+          date: new Date()
+        }
+      }
+      this.$store.dispatch('addComment', payload)
+      console.log('addComment works')
     }
   }
 }

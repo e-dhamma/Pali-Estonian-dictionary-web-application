@@ -94,8 +94,18 @@ export const store = new Vuex.Store({
 
     ]
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    addComment (state, payload) {
+      // state.loadedTerms.find(term => { return term === payload.term }).comments.push(payload.comment)
+      // state.loadedTerms.find(function (term) { return term.pali === payload.term.pali }).comments.push(payload.comment)
+      state.loadedTerms.find(function (term) { return term.pali === payload.term }).comments.push(payload.comment)
+    }
+  },
+  actions: {
+    addComment ({commit}, payload) {
+      commit('addComment', payload)
+    }
+  },
   getters: {
     loadedTerm (state) {
       return termPali => {
