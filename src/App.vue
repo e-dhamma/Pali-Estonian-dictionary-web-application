@@ -3,17 +3,17 @@
 
     <!-- Toolbar -->
     <v-toolbar>
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer" class="hidden-sm-and-up">
+      <v-btn icon @click.stop='rightDrawer = !rightDrawer' class='hidden-sm-and-up'>
         <v-icon>menu</v-icon>
       </v-btn>
       <v-toolbar-title>
-        <router-link to="/" tag="span" style="cursor: pointer">Paali-Eesti sõnaraamat</router-link>
+        <router-link to='/' tag='span' style='cursor: pointer'>Paali-Eesti sõnaraamat</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-xs-only">
+      <v-toolbar-items class='hidden-xs-only'>
         <v-btn
         flat
-        v-for="item in menueItems" :key="item.title">
+        v-for='item in menueItems' :key='item.title'>
           <v-icon left>{{ item.icon }}</v-icon>
           {{ item.title }}
         </v-btn>        
@@ -23,10 +23,10 @@
     <!-- For small screen -->
     <v-navigation-drawer
       temporary
-      v-model="rightDrawer"
+      v-model='rightDrawer'
       fixed>
       <v-list>
-        <v-list-tile v-for="item in menueItems" :key="item.title">
+        <v-list-tile v-for='item in menueItems' :key='item.title'>
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
@@ -46,10 +46,10 @@
       return {
         rightDrawer: false,
         menueItems: [
-          { icon: "search", title: "Otsi", link: '' },
-          { icon: "toc", title: "Rohkem", link: '' },
-          { icon: "notifications", title: "Teavitused", link: '' },
-          { icon: "account_circle", title: "Logi sisse", link: '' },
+          { icon: 'search', title: 'Otsi', link: '' },
+          { icon: 'toc', title: 'Rohkem', link: '' },
+          { icon: 'notifications', title: 'Teavitused', link: '' },
+          { icon: 'account_circle', title: 'Logi sisse', link: '' }
         ],
         drawer: null
       }

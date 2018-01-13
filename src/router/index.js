@@ -5,7 +5,6 @@ import Term from '@/components/Term'
 import SignUp from '@/components/SignUp'
 import InfoForUser from '@/components/InfoForUser'
 
-
 Vue.use(Router)
 
 export default new Router({
@@ -17,6 +16,7 @@ export default new Router({
     },
     {
       path: '/terminid/:pali',
+      props: true,
       name: 'Term',
       component: Term
     },
