@@ -39,49 +39,43 @@
         </div>
 
         <!-- Add comment form-->
-        <hr mb2>
-        <v-layout><v-flex><h4>Lisa uus kommentar</h4></v-flex></v-layout>
+        <hr>
+        <v-layout mt-3><v-flex><h3>Lisa uus kommentar</h3></v-flex></v-layout>
         <v-layout row>
+          <v-flex xs12 sm4>
+            <v-text-field
+              name="name"
+              label="Nimi"
+              id='name'
+              v-model='author'
+              required
+            ></v-text-field>                
+          </v-flex>
+          <v-flex xs12 sm4>
+            <v-text-field
+              name="email"
+              label="E-mail (ei kuvata avalikult)"
+              id='email'
+              v-model='email'
+              required
+            ></v-text-field>                
+          </v-flex>
+        </v-layout>
+        <v-layout row>
+          <v-flex xs12 sm6>
+            <v-text-field
+              name="message"
+              label="Sõnum"
+              id='message'
+              v-model='content'
+              required
+              multi-line
+            ></v-text-field>                
+          </v-flex>
+        </v-layout>
+        <v-layout>
           <v-flex>
-            <form>
-              <v-layout row>
-                <v-flex xs12 sm4>
-                  <v-text-field
-                    name="name"
-                    label="Nimi"
-                    id='name'
-                    v-model='author'
-                    required
-                  ></v-text-field>                
-                </v-flex>
-                <v-flex xs12 sm4>
-                  <v-text-field
-                    name="email"
-                    label="E-mail (ei kuvata avalikult)"
-                    id='email'
-                    v-model='email'
-                    required
-                  ></v-text-field>                
-                </v-flex>
-              </v-layout>
-              <v-layout row>
-                <v-flex xs12 sm6>
-                  <v-text-field
-                    name="message"
-                    label="Sõnum"
-                    id='message'
-                    v-model='content'
-                    required
-                    multi-line
-                  ></v-text-field>                
-                </v-flex>
-              </v-layout>
-              <v-layout>
-                <v-flex>
-                  <v-btn :disabled='!formIsValid' @click.native='addComment' >Lisa kommentaar</v-btn>
-                </v-flex>
-              </v-layout>
-            </form>
+            <v-btn :disabled='!formIsValid' @click.native='addComment' >Lisa kommentaar</v-btn>
           </v-flex>
         </v-layout>
 
@@ -132,7 +126,6 @@ export default {
         }
       }
       this.$store.dispatch('addComment', payload)
-      console.log('addComment works')
     }
   }
 }

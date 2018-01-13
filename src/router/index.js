@@ -5,6 +5,7 @@ import Term from '@/components/Term'
 import SignUp from '@/components/SignUp'
 import InfoForUser from '@/components/InfoForUser'
 import TermList from '@/components/TermList'
+import LetterToAdmin from '@/components/LetterToAdmin'
 
 Vue.use(Router)
 
@@ -35,8 +36,12 @@ export default new Router({
       path: '/loetelu',
       name: 'TermList',
       component: TermList
+    },
+    {
+      path: '/kiri-haldajale',
+      name: 'LetterToAdmin',
+      component: LetterToAdmin
     }
-
   ],
   mode: 'history'
 })
