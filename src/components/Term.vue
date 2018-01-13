@@ -50,14 +50,14 @@
                     name="name"
                     label="Nimi"
                     id='name'
-                    v-model='name'
+                    v-model='author'
                     required
                   ></v-text-field>                
                 </v-flex>
                 <v-flex xs12 sm4>
                   <v-text-field
                     name="email"
-                    label="E-mail"
+                    label="E-mail (ei kuvata avalikult)"
                     id='email'
                     v-model='email'
                     required
@@ -70,7 +70,7 @@
                     name="message"
                     label="Sõnum"
                     id='message'
-                    v-model='message'
+                    v-model='content'
                     required
                     multi-line
                   ></v-text-field>                
@@ -106,9 +106,9 @@
 export default {
   data () {
     return {
-      name: '',
+      author: '',
       email: '',
-      message: ''
+      content: ''
     }
   },
   props: ['pali'],
@@ -125,9 +125,9 @@ export default {
       const payload = {
         term: this.term.pali,
         comment: {
-          title: this.title,
+          author: this.author,
           email: this.email,
-          message: this.message,
+          content: this.content,
           date: new Date()
         }
       }
