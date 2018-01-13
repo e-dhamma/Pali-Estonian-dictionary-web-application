@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <p v-for="term in terms" :key="term.original">{{ term.pali }}</p>
+    <p v-for="term in terms" :key="term.original"><a :href="'/terminid/' + term.pali">{{ term.pali }}</a></p>
   </v-container>
 </template>
 
