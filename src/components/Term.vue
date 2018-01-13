@@ -10,7 +10,7 @@
         <v-layout v-for='(meaning, i) in term.meanings' :key='i' class='mt-3'>
             <v-flex>
                 <h3>{{ i + 1}}. {{ meaning.est }} [skr <i>{{ meaning.root }}</i>]</h3>
-                <p><template v-for='e in meaning.eng'><i>{{ e }}</i>, </template></p>
+                <p>eng <template v-for='e in meaning.eng'><i>{{ e }}</i>, </template></p>
                 <p>{{ meaning.expl }}</p>
                 <v-expansion-panel>
                     <v-expansion-panel-content>
@@ -54,10 +54,10 @@
 
 <script>
 export default {
-  props: ['id'],
+  props: ['pali'],
   computed: {
     term () {
-      return this.$store.getters.loadedTerm(this.id)
+      return this.$store.getters.loadedTerm(this.pali)
     }
   }
 }

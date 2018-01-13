@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import Term from '@/components/Term'
 import SignUp from '@/components/SignUp'
 import InfoForUser from '@/components/InfoForUser'
+import TermList from '@/components/TermList'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/kasutajale',
       name: 'InfoForUser',
       component: InfoForUser
+    },
+    {
+      path: '/loetelu',
+      name: 'TermList',
+      component: TermList
     }
 
   ],
