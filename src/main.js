@@ -8,6 +8,9 @@ import 'vuetify/dist/vuetify.css'
 import App from './App'
 import router from './router'
 import { store } from './store'
+import DataFilter from './filters/date'
+
+Vue.filter('date', DataFilter)
 
 Vue.use(Vuetify, { theme: {
   primary: '#ee44aa',

@@ -35,7 +35,7 @@
 
         <!-- Comments-->
         <div v-for='(comment, i) in term.comments' :key='"c" + i' class='mt-2'>
-            <p><b>{{ comment.author }}:</b> {{ comment.content}}<br>{{ comment.date }}</p>
+            <p><b>{{ comment.author }}:</b> {{ comment.content}}<br>{{ comment.date | date }}</p>
         </div>
 
         <!-- Add comment form-->

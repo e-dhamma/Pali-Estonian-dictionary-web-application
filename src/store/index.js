@@ -43,12 +43,12 @@ export const store = new Vuex.Store({
         comments: [
           {
             author: 'Mari Kuuskemaa',
-            date: '10.10.2017',
+            date: new Date(),
             content: 'Kas sõna valgustunu sobiks ka?'
           },
           {
             author: 'Juhan Kivilaid',
-            date: '17.10.2017',
+            date: new Date(),
             content:
               'Täpselt samast tuvest tulenevat sõna kasutatakse ka argieeles unest üles ärkamise kohta.'
           }
@@ -56,13 +56,13 @@ export const store = new Vuex.Store({
         translatorsChats: [
           {
             author: 'Artur Ahta',
-            date: '10.10.2017',
+            date: new Date(),
             content:
               'Sõna valgustunu ei sobi, sest sõnatüvi ei tulene sõnast valgus.'
           },
           {
             author: 'Joosep Jaik',
-            date: '10.10.2017',
+            date: new Date(),
             content:
               'Kõige täpsem tõlge oleks ehk hoopis ärganu, aga see ei kõla eriti hästi.'
           }
@@ -92,18 +92,25 @@ export const store = new Vuex.Store({
         ]
       }
 
+    ],
+    loadedLettersToAdmin: [
+      { name: 'Juhan Jurmas', email: 'juhan@gmail.com', message: 'See on kasulik rakendus! :)', time: '2018-01-05' }
     ]
   },
   mutations: {
     addComment (state, payload) {
-      // state.loadedTerms.find(term => { return term === payload.term }).comments.push(payload.comment)
-      // state.loadedTerms.find(function (term) { return term.pali === payload.term.pali }).comments.push(payload.comment)
       state.loadedTerms.find(function (term) { return term.pali === payload.term }).comments.push(payload.comment)
+    },
+    addLetterToAdmin (state, letter) {
+      state.loadedLettersToAdmin.push(letter)
     }
   },
   actions: {
     addComment ({commit}, payload) {
       commit('addComment', payload)
+    },
+    addLetterToAdmin ({commit}, letter) {
+      commit('addLetterToAdmin', letter)
     }
   },
   getters: {
