@@ -6,6 +6,7 @@ import SignUp from '@/components/SignUp'
 import InfoForUser from '@/components/InfoForUser'
 import TermList from '@/components/TermList'
 import LetterToAdmin from '@/components/LetterToAdmin'
+import SignIn from '@/components/SignIn'
 
 Vue.use(Router)
 
@@ -26,6 +27,11 @@ export default new Router({
       path: '/registreeru',
       name: 'SignUp',
       component: SignUp
+    },
+    {
+      path: '/logi-sisse',
+      name: 'SignIn',
+      component: SignIn
     },
     {
       path: '/kasutajale',

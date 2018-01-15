@@ -2,7 +2,7 @@
   <v-app>
 
     <!-- Toolbar -->
-    <v-toolbar>
+    <v-toolbar dense>
       <v-btn icon @click.stop='rightDrawer = !rightDrawer' class='hidden-sm-and-up'>
         <v-icon>menu</v-icon>
       </v-btn>
