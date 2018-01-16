@@ -95,6 +95,9 @@ export const store = new Vuex.Store({
     ],
     loadedLettersToAdmin: [
       { name: 'Juhan Jurmas', email: 'juhan@gmail.com', message: 'See on kasulik rakendus! :)', time: '2018-01-05' }
+    ],
+    loadedUsers: [
+      {username: 'jüri'}
     ]
   },
   mutations: {
@@ -123,6 +126,10 @@ export const store = new Vuex.Store({
     },
     loadedTerms (state) {
       return state.loadedTerms
+    },
+    loadedUsers (state) {
+      return state.loadedUsers
+      console.log('shop here')
     }
   }
 })

@@ -7,6 +7,7 @@ import InfoForUser from '@/components/InfoForUser'
 import TermList from '@/components/TermList'
 import LetterToAdmin from '@/components/LetterToAdmin'
 import SignIn from '@/components/SignIn'
+import UserPage from '@/components/UserPage'
 
 Vue.use(Router)
 
@@ -33,6 +34,12 @@ export default new Router({
       name: 'SignIn',
       component: SignIn
     },
+    {
+      path: '/kasutajaleht',
+      name: 'UserPage',
+      component: UserPage
+    },
+
     {
       path: '/kasutajale',
       name: 'InfoForUser',
