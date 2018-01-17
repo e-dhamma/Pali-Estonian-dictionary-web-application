@@ -129,7 +129,6 @@ export const store = new Vuex.Store({
     },
     loadedUsers (state) {
       return state.loadedUsers
-      console.log('shop here')
     }
   }
 })

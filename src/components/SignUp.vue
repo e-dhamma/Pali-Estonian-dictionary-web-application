@@ -53,7 +53,7 @@
   </v-container>
 </template>
 
-<<script>
+<script>
 export default {
   data () {
     return {
