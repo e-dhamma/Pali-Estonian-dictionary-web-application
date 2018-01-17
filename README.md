@@ -1,6 +1,10 @@
-# pali-estonian-dictionary-web-application
+# Pali-Estonian Dictionary Web Application
 
-> A Vue.js project
+> A Vue.js project designed with Vuetify.js.
+
+## Purpose
+
+This application hosts Pali-Estonian Dictionary containing Buddhist terminology. It also provides special features for translators.
 
 ## Build Setup
 
