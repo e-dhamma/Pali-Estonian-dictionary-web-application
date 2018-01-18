@@ -21,7 +21,18 @@
         name='email'
         label='E-mail'
         id='email'
+        type="email"
         v-model="email"
+        required></v-text-field>
+      </v-flex>
+    </v-layout>
+        <v-layout>
+      <v-flex xs12 sm6 offset-sm3>
+        <v-text-field
+        name='title'
+        label='Pealkiri'
+        id='title'
+        v-model="title"
         required></v-text-field>
       </v-flex>
     </v-layout>
@@ -36,6 +47,7 @@
         multi-line></v-text-field>
       </v-flex>
     </v-layout>
+
     <v-layout>
       <v-flex xs12 sm6 offset-sm3>
         <v-btn :disabled='!formIsValid' @click="addLetterToAdmin">Saada</v-btn>
@@ -51,6 +63,7 @@ export default {
     return {
       name: '',
       email: '',
+      title: '',
       message: ''
     }
   },
@@ -64,8 +77,8 @@ export default {
       const letter = {
         name: this.name,
         email: this.email,
+        title: this.title,
         message: this.message,
-        date: new Date()
       }
       this.$store.dispatch('addLetterToAdmin', letter)
       console.log(letter)
