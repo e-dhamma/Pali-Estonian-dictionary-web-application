@@ -1,15 +1,18 @@
 <<template>
     <v-container>
 
+        <!-- term metadata -->
         <v-layout>
             <v-flex>
-                <h1><i>{{ term.pali }}</i><v-icon>play_arrow</v-icon></h1>
+                <h1><i>{{ term.pali }}</i></h1>
+                <p><template v-if="term.wordClass || term.gender">({{ term.wordClass }}, {{ term.gender }}) </template><i>hääldus</i> <v-icon>play_arrow</v-icon></p>
             </v-flex>
         </v-layout>
 
+        <!-- term meanings -->
         <v-layout v-for='(meaning, i) in term.meanings' :key='i' class='mt-3'>
             <v-flex>
-                <h3>{{ i + 1}}. {{ meaning.est }} [skr <i>{{ meaning.root }}</i>]</h3>
+                <h3>{{ i + 1}}. <template v-for='est in meaning.est'>{{ est }}, </template>[{{ meaning.rootLang }} <i>{{ meaning.root }}</i> ({{ meaning.rootDescription}})]</h3>
                 <p>eng <template v-for='e in meaning.eng'><i>{{ e }}</i>, </template></p>
                 <p>{{ meaning.expl }}</p>
                 <v-expansion-panel>
@@ -108,6 +111,7 @@ export default {
   props: ['pali'],
   computed: {
     term () {
+      console.log(this.$store.getters.loadedTerm(this.pali))
       return this.$store.getters.loadedTerm(this.pali)
     },
     formIsValid () {

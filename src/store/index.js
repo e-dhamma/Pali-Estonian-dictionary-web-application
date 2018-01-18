@@ -8,10 +8,14 @@ export const store = new Vuex.Store({
     loadedTerms: [
       {
         pali: 'buddha',
+        gender: 'm', // n, m, k
+        wordClass: 'nimis', // nimis, määrs, omds, tegs
         meanings: [
           {
-            est: 'virgunu',
+            est: ['virgunu', 'ärganu'],
             root: 'budh',
+            rootLang: 'skr', // 'skr' or 'pl'
+            rootDescription: 'üles ärkama, unest virguma',
             eng: ['Buddha', 'Enlightened One', 'Awakened One'],
             expl:
               'Teadvuse kõrgeima võimaliku seisundini jõudnud isik, kelle meelest on kadunud kõik meeleplekid, kes on vabanenud sansaarast ja jõudnud nirvaaasse. (viide)',
