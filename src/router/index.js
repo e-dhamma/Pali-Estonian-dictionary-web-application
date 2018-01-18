@@ -8,6 +8,7 @@ import TermList from '@/components/TermList'
 import LetterToAdmin from '@/components/LetterToAdmin'
 import SignIn from '@/components/SignIn'
 import UserPage from '@/components/UserPage'
+import ForAdmin from '@/components/ForAdmin'
 
 Vue.use(Router)
 
@@ -54,7 +55,13 @@ export default new Router({
       path: '/kiri-haldajale',
       name: 'LetterToAdmin',
       component: LetterToAdmin
+    },
+    {
+      path: '/haldajale',
+      name: 'ForAdmin',
+      component: ForAdmin
     }
+
   ],
   mode: 'history'
 })

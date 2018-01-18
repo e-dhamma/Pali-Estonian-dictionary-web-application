@@ -1,0 +1,9 @@
+<template>
+  <v-container>
+      <v-layout>
+          <v-flex>
+              <p>Haldajale</p>
+          </v-flex>
+      </v-layout>
+  </v-container>
+</template>
