@@ -1,6 +1,6 @@
 # Contributing
 
-👍🎉 First off, thanks for taking the time to consider contributeing! 🎉👍
+👍🎉 First off, thanks for taking the time to consider contributing! 🎉👍
 
 The following is a set of guidelines for contributing to Pali-Estonian-dictionary-web-application.
 
@@ -33,3 +33,4 @@ The following is a set of guidelines for contributing to Pali-Estonian-dictionar
 ### JavaScript Styleguide
 
 All JavaScript must adhere to [JavaScript Standard Style](https://standardjs.com/).
+Please use the reformat.sh script located in the root directory to reformat your code.
