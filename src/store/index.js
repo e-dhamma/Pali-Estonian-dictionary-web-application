@@ -8,6 +8,7 @@ export const store = new Vuex.Store({
     loadedTerms: [
       {
         pali: 'buddha',
+        slug: 'buddha',
         gender: 'm', // n, m, k
         wordClass: 'nimis', // nimis, määrs, omds, tegs
         meanings: [
@@ -47,7 +48,7 @@ export const store = new Vuex.Store({
         comments: [
           {
             author: 'Mari Kuuskemaa',
-            date: new Date(),
+            date: new Date(), // must change name to timestamp
             content: 'Kas sõna valgustunu sobiks ka?'
           },
           {
@@ -60,7 +61,7 @@ export const store = new Vuex.Store({
         translatorsChats: [
           {
             author: 'Artur Ahta',
-            date: new Date(),
+            date: new Date(), // must change name to timestamp
             content:
               'Sõna valgustunu ei sobi, sest sõnatüvi ei tulene sõnast valgus.'
           },

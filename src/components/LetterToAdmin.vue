@@ -58,6 +58,7 @@
 </template>
 
 <<script>
+import LetterToAdminService from '../services/LetterToAdminService'
 export default {
   data () {
     return {
@@ -72,16 +73,19 @@ export default {
       return this.name !== '' && this.email !== '' && this.message !== ''
     }
   },
+  created () {
+    this.service = new LetterToAdminService()
+  },
   methods: {
     addLetterToAdmin () {
       const letter = {
         name: this.name,
         email: this.email,
         title: this.title,
-        message: this.message,
+        message: this.message
       }
-      this.$store.dispatch('addLetterToAdmin', letter)
-      console.log(letter)
+      // this.$store.dispatch('addLetterToAdmin', letter)
+      this.service.save(letter)
     }
   }
 }
