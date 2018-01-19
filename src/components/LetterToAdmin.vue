@@ -58,7 +58,7 @@
 </template>
 
 <<script>
-import LetterToAdminService from '../services/index'
+import { LetterToAdminService } from '../services/index'
 export default {
   data () {
     return {

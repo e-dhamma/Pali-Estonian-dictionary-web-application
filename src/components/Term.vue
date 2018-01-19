@@ -100,6 +100,7 @@
 </template>
 
 <script>
+import { TermCommentService } from '../services/index'
 export default {
   data () {
     return {
@@ -118,6 +119,9 @@ export default {
       return this.name !== '' && this.email !== '' && this.message !== ''
     }
   },
+  created () {
+    this.service = new TermCommentService()
+  },
   methods: {
     addComment () {
       const payload = {
@@ -125,11 +129,19 @@ export default {
         comment: {
           author: this.author,
           email: this.email,
-          content: this.content,
-          date: new Date()
+          content: this.content
         }
       }
       this.$store.dispatch('addComment', payload)
+
+      const comment = {
+        term: 1,
+        author: this.author,
+        email: this.email,
+        content: this.content
+      }
+
+      this.service.save(comment)
     }
   }
 }
