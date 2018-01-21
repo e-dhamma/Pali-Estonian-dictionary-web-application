@@ -7,7 +7,7 @@ export const store = new Vuex.Store({
   state: {
     loadedTerms: [
       {
-        pali: ['buddha'],
+        pali: ['buddha', 'sugatha', 'tatagatha'],
         slug: 'buddha',
         gender: 'm', // n, m, k
         wordClass: 'nimis', // nimis, määrs, omds, tegs

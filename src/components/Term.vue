@@ -4,7 +4,7 @@
         <!-- term metadata -->
         <v-layout>
             <v-flex>
-                <h1><i>{{ term.pali }}</i></h1>
+                <h1><i><template v-for="(p,i) in term.pali">{{ p }}<template v-if="i < paliLength">, </template></template></i></h1>
                 <p><template v-if="term.wordClass || term.gender">({{ term.wordClass }}, {{ term.gender }}) </template><i>hääldus</i> <v-icon>play_arrow</v-icon></p>
             </v-flex>
         </v-layout>
@@ -116,7 +116,9 @@ export default {
     },
     formIsValid () {
       return this.name !== '' && this.email !== '' && this.message !== ''
-    }
+    },
+    paliLength () { return this.term.pali.length - 1 }
+
   },
   created () {
     this.service = new TermCommentService()
