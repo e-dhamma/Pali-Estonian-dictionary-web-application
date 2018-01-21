@@ -7,7 +7,7 @@ export const store = new Vuex.Store({
   state: {
     loadedTerms: [
       {
-        pali: 'buddha',
+        pali: ['buddha'],
         slug: 'buddha',
         gender: 'm', // n, m, k
         wordClass: 'nimis', // nimis, määrs, omds, tegs
@@ -123,9 +123,9 @@ export const store = new Vuex.Store({
   },
   getters: {
     loadedTerm (state) {
-      return termPali => {
+      return termSlug => {
         return state.loadedTerms.find((term) => {
-          return term.pali === termPali
+          return term.slug === termSlug
         })
       }
     },

@@ -20,7 +20,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/terminid/:pali',
+      path: '/terminid/:slug',
       props: true,
       name: 'Term',
       component: Term

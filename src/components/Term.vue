@@ -109,11 +109,10 @@ export default {
       content: ''
     }
   },
-  props: ['pali'],
+  props: ['slug'],
   computed: {
     term () {
-      console.log(this.$store.getters.loadedTerm(this.pali))
-      return this.$store.getters.loadedTerm(this.pali)
+      return this.$store.getters.loadedTerm(this.slug)
     },
     formIsValid () {
       return this.name !== '' && this.email !== '' && this.message !== ''
