@@ -118,7 +118,6 @@ export default {
       return this.name !== '' && this.email !== '' && this.message !== ''
     },
     paliLength () { return this.term.pali.length - 1 }
-
   },
   created () {
     this.service = new TermCommentService()
@@ -136,12 +135,12 @@ export default {
       this.$store.dispatch('addComment', payload)
 
       const comment = {
-        term: 1,
+        term: this.term.id,
         author: this.author,
         email: this.email,
         content: this.content
       }
-
+      console.log(comment)
       this.service.save(comment)
     }
   }
