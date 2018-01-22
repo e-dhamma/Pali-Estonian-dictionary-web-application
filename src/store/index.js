@@ -131,9 +131,11 @@ export const store = new Vuex.Store({
     },
     searchForTerm (state) {
       return searchInput => {
-        return state.loadedTermList.find((term) => {
+        const theTerm = state.loadedTermList.find((term) => {
           return term.slug === searchInput
-        }).slug
+        })
+        if (theTerm === undefined) { return undefined }
+        return theTerm.slug
       }
     }
   }

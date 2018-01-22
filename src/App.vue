@@ -60,7 +60,7 @@
       searchTerm () {
         if (this.searchInput === '') { return null }
         const termSlug = this.$store.getters.searchForTerm(this.searchInput)
-
+        if (termSlug === undefined) { return null } // Error message here
         this.$router.push({ name: 'Term', params: { slug: termSlug }})
       }
     }
