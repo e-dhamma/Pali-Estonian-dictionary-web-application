@@ -9,17 +9,20 @@ export const store = new Vuex.Store({
       {
         id: 1,
         pali: ['buddha', 'sugatha', 'tatagatha'],
-        slug: 'buddha'
+        slug: 'buddha', 
+        est: ['virgunu', 'valgustunu']
       },
       {
         id: 2,
         pali: ['dhamma', 'dharma'],
-        slug: 'dhamma'
+        slug: 'dhamma',
+        est: ['opetus', 'seadmus']
       },
       {
         id: 3,
         pali: ['sangha', 'sanghaaa'],
-        slug: 'sangha'
+        slug: 'sangha',
+        est: ['kogudus', 'vennaskond']
       }
     ],
     loadedTerms: [
@@ -130,9 +133,14 @@ export const store = new Vuex.Store({
       return state.loadedUsers
     },
     searchForTerm (state) {
-      return searchInput => {
+      return searchInput => { // No completely sure, why it works
         const theTerm = state.loadedTermList.find((term) => {
-          return term.slug === searchInput
+          for (let i = 0; i < term.pali.length; i++) {
+            if (term.pali[i] === searchInput) { return term }
+          }
+          for (let j = 0; j < term.est.length; j++) {
+            if (term.est[j] === searchInput) { return term }
+          }
         })
         if (theTerm === undefined) { return undefined }
         return theTerm.slug
