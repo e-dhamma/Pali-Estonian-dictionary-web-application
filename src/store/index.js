@@ -5,6 +5,23 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
+    loadedTermList: [
+      {
+        id: 1,
+        pali: ['buddha', 'sugatha', 'tatagatha'],
+        slug: 'buddha'
+      },
+      {
+        id: 2,
+        pali: ['dhamma', 'dharma'],
+        slug: 'dhamma'
+      },
+      {
+        id: 3,
+        pali: ['sangha', 'sanghaaa'],
+        slug: 'sangha'
+      }
+    ],
     loadedTerms: [
       {
         id: 1,
@@ -73,31 +90,7 @@ export const store = new Vuex.Store({
               'Kõige täpsem tõlge oleks ehk hoopis ärganu, aga see ei kõla eriti hästi.'
           }
         ]
-      },
-      {
-        pali: 'metta'
-      },
-      {
-        pali: 'karuna',
-        meanings: [
-          {
-            est: 'kaastunne',
-            root: '',
-            eng: ['compassion'],
-            expl:
-              'Soov teisi olendied kannatustest vabastada',
-            further:
-              'D I.74 (sammā° õige, st (aasta-)ajale sobilik dušš; DA I.218=vuṭṭhi); II.15 (udakassa, vool, hoovus, voog); J I.31; Ps I.125 (udaka°); Pv II.970 (sammā°); VvA 4 (hingulika°); PvA 139; DhA IV.15 (assu°); Sdhp 595 (vassa°).',
-            examples: [
-              {
-                original: 'buddhang saranang gacchami.',
-                translation: 'Virgunu kaitse alla lähen.'
-              }
-            ]
-          }
-        ]
       }
-
     ],
     loadedLettersToAdmin: [
       { name: 'Juhan Jurmas', email: 'juhan@gmail.com', message: 'See on kasulik rakendus! :)', time: '2018-01-05' }
@@ -135,6 +128,13 @@ export const store = new Vuex.Store({
     },
     loadedUsers (state) {
       return state.loadedUsers
+    },
+    searchForTerm (state) {
+      return searchInput => {
+        return state.loadedTermList.find((term) => {
+          return term.slug === searchInput
+        }).slug
+      }
     }
   }
 })

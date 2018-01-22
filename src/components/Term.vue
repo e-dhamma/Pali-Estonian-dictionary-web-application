@@ -140,7 +140,6 @@ export default {
         email: this.email,
         content: this.content
       }
-      console.log(comment)
       this.service.save(comment)
     }
   }

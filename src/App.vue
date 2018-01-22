@@ -11,6 +11,8 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class='hidden-xs-only'>
+        <v-text-field hide-details single-line label="Otsi" v-model="searchInput"></v-text-field>
+        <v-btn flat @click="searchTerm"><v-icon>search</v-icon></v-btn>
         <v-btn
         flat
         v-for='item in menueItems' :key='item.title'>
@@ -44,14 +46,22 @@
   export default {
     data () {
       return {
+        searchInput: '',
         rightDrawer: false,
         menueItems: [
           { icon: 'search', title: 'Otsi', link: '' },
           { icon: 'toc', title: 'Rohkem', link: '' },
           { icon: 'notifications', title: 'Teavitused', link: '' },
           { icon: 'account_circle', title: 'Logi sisse', link: '' }
-        ],
-        drawer: null
+        ]
+      }
+    },
+    methods: {
+      searchTerm () {
+        if (this.searchInput === '') { return null }
+        const termSlug = this.$store.getters.searchForTerm(this.searchInput)
+
+        this.$router.push({ name: 'Term', params: { slug: termSlug }})
       }
     }
   }
