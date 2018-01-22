@@ -11,8 +11,11 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class='hidden-xs-only'>
+
+        <!-- Search -->
         <v-text-field hide-details single-line label="Otsi" v-model="searchInput"></v-text-field>
         <v-btn flat @click="searchTerm"><v-icon>search</v-icon></v-btn>
+
         <v-btn
         flat
         v-for='item in menueItems' :key='item.title'>
@@ -37,6 +40,17 @@
       </v-list>
     </v-navigation-drawer>
 
+    <!-- Snackbar for notifications -->
+    <v-snackbar
+      :timeout="3000"
+      :top="true"
+      v-model="snackbar"
+    >
+      {{ notification }}
+      <v-btn flat color="pink" @click.native="snackbar = false">Sulge</v-btn>
+    </v-snackbar>
+
+  <!-- Main content -->
   <router-view></router-view>
   
   </v-app>
@@ -46,10 +60,15 @@
   export default {
     data () {
       return {
+        // For snackbar
+        snackbar: false,
+        notification: '',
+        // For search
         searchInput: '',
+        // For navigation drawer for small screen
         rightDrawer: false,
+        // Toolbar buttons
         menueItems: [
-          { icon: 'search', title: 'Otsi', link: '' },
           { icon: 'toc', title: 'Rohkem', link: '' },
           { icon: 'notifications', title: 'Teavitused', link: '' },
           { icon: 'account_circle', title: 'Logi sisse', link: '' }
@@ -57,11 +76,18 @@
       }
     },
     methods: {
+      showNotification (notification) {
+        this.notification = notification
+        this.snackbar = true
+      },
       searchTerm () {
         if (this.searchInput === '') { return null }
         const termSlug = this.$store.getters.searchForTerm(this.searchInput)
-        if (termSlug === undefined) { return null } // Error message here
-        this.$router.push({ name: 'Term', params: { slug: termSlug }})
+        if (termSlug === undefined) {
+          this.showNotification('Otsing ei andnud tulemusi.')
+          return null
+        }
+        this.$router.push({ name: 'Term', params: { slug: termSlug } })
       }
     }
   }
