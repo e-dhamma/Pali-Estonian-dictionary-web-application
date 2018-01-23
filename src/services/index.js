@@ -20,9 +20,9 @@ export class TermCommentService {
 
 export class TermListService {
   constructor () {
-    this.termList = axios.create({ baseURL: 'http://127.0.0.1:8000/api' })
+    this.termList = axios.create({ baseURL: 'http://127.0.0.1:8000/api' }) // Why is it nessasary?
   }
   get () {
-    axios.get('http://127.0.0.1:8000/api/term-comment/').then(function (response) { console.log(response.data) })
+    axios.get('http://127.0.0.1:8000/api/term-list/').then(function (response) { console.log(response.data) })
   }
 }
