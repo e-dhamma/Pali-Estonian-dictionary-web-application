@@ -23,6 +23,14 @@ export class TermListService {
     this.termList = axios.create({ baseURL: 'http://127.0.0.1:8000/api' }) // Why is it nessasary?
   }
   get () {
-    axios.get('http://127.0.0.1:8000/api/term-list/').then(function (response) { console.log(response.data) })
+    return axios.get('http://127.0.0.1:8000/api/term-list/')
+    // var responseData = 'k'
+    // axios.get('http://127.0.0.1:8000/api/term-list/')
+    // .then(function (response) {
+    //   console.log(response.data)
+    //   this.responseData = response.data
+    // })
+    // console.log(responseData)
+    // return responseData
   }
 }

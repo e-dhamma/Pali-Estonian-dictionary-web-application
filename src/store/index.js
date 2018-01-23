@@ -108,7 +108,12 @@ export const store = new Vuex.Store({
     },
     addLetterToAdmin (state, letter) {
       state.loadedLettersToAdmin.push(letter)
+    },
+    addTermList (state, termList) {
+      state.loadedTermList = state.loadedTermList.concat(termList)
+      console.log(state.loadedTermList)
     }
+
   },
   actions: {
     addComment ({commit}, payload) {
@@ -116,7 +121,12 @@ export const store = new Vuex.Store({
     },
     addLetterToAdmin ({commit}, letter) {
       commit('addLetterToAdmin', letter)
+    },
+    addTermList ({commit}, termList) {
+      console.log('action executed')
+      commit('addTermList', termList)
     }
+
   },
   getters: {
     loadedTerm (state) {

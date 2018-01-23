@@ -123,7 +123,7 @@ export default {
     this.service = new TermCommentService()
   },
   methods: {
-    addComment () {
+    addComment () { // This method is perhaps not needed.
       const payload = {
         term: this.term.pali,
         comment: {
