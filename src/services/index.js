@@ -17,3 +17,12 @@ export class TermCommentService {
     this.termComments.post('/term-comment/', comment)
   }
 }
+
+export class TermListService {
+  constructor () {
+    this.termList = axios.create({ baseURL: 'http://127.0.0.1:8000/api' })
+  }
+  get () {
+    axios.get('http://127.0.0.1:8000/api/term-comment/').then(function (response) { console.log(response.data) })
+  }
+}

@@ -57,6 +57,7 @@
 </template>
 
 <script>
+  import { TermListService } from './services/index'
   export default {
     data () {
       return {
@@ -74,6 +75,10 @@
           { icon: 'account_circle', title: 'Logi sisse', link: '' }
         ]
       }
+    },
+    created () {
+      this.TermListService = new TermListService()
+      console.log(this.TermListService.get())
     },
     methods: {
       showNotification (notification) {

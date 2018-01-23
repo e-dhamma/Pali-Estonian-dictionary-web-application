@@ -9,7 +9,7 @@ export const store = new Vuex.Store({
       {
         id: 1,
         pali: ['buddha', 'sugatha', 'tatagatha'],
-        slug: 'buddha', 
+        slug: 'buddha',
         est: ['virgunu', 'valgustunu']
       },
       {
