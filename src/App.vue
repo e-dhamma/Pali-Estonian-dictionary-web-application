@@ -78,7 +78,9 @@
     },
     created () {
       this.TermListService = new TermListService()
-      this.TermListService.get().then( (response) => { this.$store.dispatch('addTermList', response.data) }) // Unable to catch response.data into a variable
+      this.TermListService.get()
+      .then((response) => { this.$store.dispatch('addTermList', response.data) })
+      .catch((error) => { console.log(error) })
     },
     methods: {
       showNotification (notification) {

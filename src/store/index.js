@@ -126,7 +126,6 @@ export const store = new Vuex.Store({
       console.log('action executed')
       commit('addTermList', termList)
     }
-
   },
   getters: {
     loadedTerm (state) {
@@ -142,7 +141,7 @@ export const store = new Vuex.Store({
     loadedUsers (state) {
       return state.loadedUsers
     },
-    searchForTerm (state) {
+    searchForTerm (state) { // Right now not working, because term-list API returns data in wrong format.
       return searchInput => { // No completely sure, why it works
         const theTerm = state.loadedTermList.find((term) => {
           for (let i = 0; i < term.pali.length; i++) {
@@ -150,6 +149,9 @@ export const store = new Vuex.Store({
           }
           for (let j = 0; j < term.est.length; j++) {
             if (term.est[j] === searchInput) { return term }
+          }
+          for (let k = 0; k < term.slug.length; k++) {
+            if (term.slug[k] === searchInput) { return term }
           }
         })
         if (theTerm === undefined) { return undefined }
