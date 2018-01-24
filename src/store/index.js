@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
@@ -122,9 +123,30 @@ export const store = new Vuex.Store({
     addLetterToAdmin ({commit}, letter) {
       commit('addLetterToAdmin', letter)
     },
-    addTermList ({commit}, termList) {
-      console.log('action executed')
-      commit('addTermList', termList)
+    addTermList ({commit}) {
+      axios.get('http://127.0.0.1:8000/api/term-list/')
+      .then((response) => { // All the data reorganization should be done in the backend.
+        const d = response.data
+        let lTermList = []
+        for (let i = 0; i < d.length; i++) {
+          let getPali = []
+          for (let j = 0; j < d[i].pali_set.length; j++) {
+            getPali.push(d[i].pali_set[j].pali)
+          }
+          // let getEst = []
+          // for (let k = 0; k < d[i].pali_set.length; k++) {
+          //   getPali.push(d[i].est_set[j].est)
+          // }
+          lTermList.push({
+            id: d[i].id,
+            slug: d[i].slug,
+            pali: getPali,
+            est: ['hardcoded']
+          })
+        }
+        commit('addTermList', lTermList)
+      })
+      .catch((error) => { console.log(error) })
     }
   },
   getters: {

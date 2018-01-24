@@ -57,7 +57,6 @@
 </template>
 
 <script>
-  import { TermListService } from './services/index'
   export default {
     data () {
       return {
@@ -77,10 +76,7 @@
       }
     },
     created () {
-      this.TermListService = new TermListService()
-      this.TermListService.get()
-      .then((response) => { this.$store.dispatch('addTermList', response.data) })
-      .catch((error) => { console.log(error) })
+      this.$store.dispatch('addTermList')
     },
     methods: {
       showNotification (notification) {
