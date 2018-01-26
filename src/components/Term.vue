@@ -112,7 +112,7 @@ export default {
   props: ['slug'],
   computed: {
     term () {
-      return this.$store.getters.loadedTerm(this.slug)
+      return this.$store.getters.loadedTerm
     },
     formIsValid () {
       return this.name !== '' && this.email !== '' && this.message !== ''
