@@ -6,26 +6,7 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    loadedTermList: [
-      {
-        id: 1,
-        pali: ['buddha', 'sugatha', 'tatagatha'],
-        slug: 'buddha',
-        est: ['virgunu', 'valgustunu']
-      },
-      {
-        id: 2,
-        pali: ['dhamma', 'dharma'],
-        slug: 'dhamma',
-        est: ['opetus', 'seadmus']
-      },
-      {
-        id: 3,
-        pali: ['sangha', 'sanghaaa'],
-        slug: 'sangha',
-        est: ['kogudus', 'vennaskond']
-      }
-    ],
+    loadedTermList: [],
     loadedTerms: [
       {
         id: 1,
@@ -126,25 +107,7 @@ export const store = new Vuex.Store({
     addTermList ({commit}) {
       axios.get('http://127.0.0.1:8000/api/term-list/')
       .then((response) => { // All the data reorganization should be done in the backend.
-        const d = response.data
-        let lTermList = []
-        for (let i = 0; i < d.length; i++) {
-          let getPali = []
-          for (let j = 0; j < d[i].pali_set.length; j++) {
-            getPali.push(d[i].pali_set[j].pali)
-          }
-          // let getEst = []
-          // for (let k = 0; k < d[i].pali_set.length; k++) {
-          //   getPali.push(d[i].est_set[j].est)
-          // }
-          lTermList.push({
-            id: d[i].id,
-            slug: d[i].slug,
-            pali: getPali,
-            est: ['hardcoded']
-          })
-        }
-        commit('addTermList', lTermList)
+        commit('addTermList', response.data)
       })
       .catch((error) => { console.log(error) })
     }
