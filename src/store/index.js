@@ -126,7 +126,7 @@ export const store = new Vuex.Store({
     }
   },
   getters: {
-    loadedTerm (state) { return state.loadedTerm[0] },
+    loadedTerm (state) { return state.loadedTerm },
     loadedTerms (state) {
       return state.loadedTerms
     },

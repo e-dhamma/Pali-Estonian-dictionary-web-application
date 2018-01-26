@@ -1,19 +1,19 @@
-<<template>
+<template>
     <v-container>
 
         <!-- term metadata -->
         <v-layout>
             <v-flex>
-                <h1><i><template v-for="(p,i) in term.pali">{{ p }}<template v-if="i < paliLength">, </template></template></i></h1>
+                <h1><i>{{ term.pali }}</i></h1>
                 <p><template v-if="term.wordClass || term.gender">({{ term.wordClass }}, {{ term.gender }}) </template><i>hääldus</i> <v-icon>play_arrow</v-icon></p>
             </v-flex>
         </v-layout>
 
         <!-- term meanings -->
-        <v-layout v-for='(meaning, i) in term.meanings' :key='i' class='mt-3'>
+        <v-layout v-for='(meaning, i) in term.meaning_set' :key='i' class='mt-3'>
             <v-flex>
-                <h3>{{ i + 1}}. <template v-for='est in meaning.est'>{{ est }}, </template>[{{ meaning.rootLang }} <i>{{ meaning.root }}</i> ({{ meaning.rootDescription}})]</h3>
-                <p>eng <template v-for='e in meaning.eng'><i>{{ e }}</i>, </template></p>
+                <h3>{{ i + 1}}. {{ meaning.est }} [{{ meaning.rootLang }} <i>{{ meaning.root }}</i> ({{ meaning.rootDescription}})]</h3>
+                <p>eng {{ meaning.eng }}</p>
                 <p>{{ meaning.expl }}</p>
                 <v-expansion-panel>
                     <v-expansion-panel-content>
@@ -23,7 +23,7 @@
                                 <p>{{ meaning.further }}</p>
                                 <h4>Tõlkenäited:</h4>
                                 <div>
-                                    <p v-for='example in meaning.examples' :key='example.original'>
+                                    <p v-for='example in meaning.example_set' :key='example.original'>
                                         <i>{{ example.original }}</i><br>
                                         {{ example.translation }}
                                     </p>
@@ -37,7 +37,7 @@
         <hr class='mt-4'>
 
         <!-- Comments-->
-        <div v-for='(comment, i) in term.comments' :key='"c" + i' class='mt-2'>
+        <div v-for='(comment, i) in term.comment_set' :key='"c" + i' class='mt-2'>
             <p><b>{{ comment.author }}:</b> {{ comment.content}}<br>{{ comment.date | date }}</p>
         </div>
 
@@ -112,12 +112,12 @@ export default {
   props: ['slug'],
   computed: {
     term () {
+      console.log(this.$store.getters.loadedTerm)
       return this.$store.getters.loadedTerm
     },
     formIsValid () {
       return this.name !== '' && this.email !== '' && this.message !== ''
-    },
-    paliLength () { return this.term.pali.length - 1 }
+    }
   },
   created () {
     this.service = new TermCommentService()
