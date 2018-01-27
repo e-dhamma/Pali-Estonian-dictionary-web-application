@@ -90,10 +90,10 @@
           this.showNotification('Otsing ei andnud tulemusi.')
           return null
         } else if (results.length === 1) {
-          this.$router.push({ name: 'Term', params: { slug: results[0] } })
+          this.$router.push({ name: 'Term', params: { slug: results[0].slug } })
           this.$store.dispatch('addTerm', results[0])
         } else if (results.length > 1) {
-          this.results = results
+          this.$store.dispatch('addSearchResults', results)
           this.$router.push({ name: 'SearchResults' })
 
         } else {

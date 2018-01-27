@@ -80,7 +80,8 @@ export const store = new Vuex.Store({
     ],
     loadedUsers: [
       {username: 'jüri'}
-    ]
+    ],
+    searchResults: []
   },
   mutations: {
     addComment (state, payload) {
@@ -91,12 +92,13 @@ export const store = new Vuex.Store({
     },
     addTermList (state, termList) {
       state.loadedTermList = state.loadedTermList.concat(termList)
-      console.log(state.loadedTermList)
     },
     addTerm (state, term) {
       state.loadedTerm = term
+    },
+    addSearchResults (state, results) {
+      state.searchResults = results
     }
-
   },
   actions: { // Why are there no colons aftre fnction names?
     addTermList ({commit}) {
@@ -112,6 +114,9 @@ export const store = new Vuex.Store({
         commit('addTerm', response.data)
       })
       .catch((error) => { console.log(error) })
+    },
+    addSearchResults ({commit}, results) {
+      commit('addSearchResults', results)
     },
     addComment ({commit}, payload) {
       commit('addComment', payload)
@@ -132,14 +137,17 @@ export const store = new Vuex.Store({
       return searchInput => { // No completely sure, why it works
         var results = []
         state.loadedTermList.find((term) => {
-          if (term.pali.includes(searchInput)) { results.push(term.slug) }
+          if (term.pali.includes(searchInput)) { results.push(term) }
           for (let i = 0; i < term.meaning_set.length; i++) {
-            if (term.meaning_set[i].est.includes(searchInput)) { results.push(term.slug) }
-            if (term.meaning_set[i].eng.includes(searchInput)) { results.push(term.slug) }
+            if (term.meaning_set[i].est.includes(searchInput)) { results.push(term) }
+            if (term.meaning_set[i].eng.includes(searchInput)) { results.push(term) }
           }
         })
         return results
       }
+    },
+    searchResults (state) {
+      return state.searchResults
     }
   }
 })

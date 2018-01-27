@@ -5,7 +5,13 @@
         <h2>Sinu otsingusõnaga andis mitu vastet</h2>
       </v-flex>
     </v-layout>
-    <v-flex>{{ results }}</v-flex>
+    <v-flex>
+      <ul>
+        <li v-for="result in results" :key="result.id">
+          <router-link :to="'/terminid/' + result.slug">pl: <i>{{ result.pali }}</i>; est: {{ result.est }};</router-link>
+        </li>
+      </ul>
+    </v-flex>
     <v-layout>
     </v-layout>
   </v-container>
@@ -15,8 +21,12 @@
 export default {
   data () {
     return {
-      results: this.results
     }
   },
+  computed: {
+    results () {
+      return this.$store.getters.searchResults
+    }
+  }
 }
 </script>
