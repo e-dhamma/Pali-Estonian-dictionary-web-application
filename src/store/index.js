@@ -148,6 +148,9 @@ export const store = new Vuex.Store({
     },
     searchResults (state) {
       return state.searchResults
+    },
+    termList (state) {
+      return state.loadedTermList
     }
   }
 })

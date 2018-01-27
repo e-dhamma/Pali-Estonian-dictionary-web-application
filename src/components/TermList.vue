@@ -1,6 +1,8 @@
 <template>
   <v-container>
-    <p v-for="term in terms" :key="term.original"><a :href="'/terminid/' + term.pali">{{ term.pali }}</a></p>
+    <ul>
+      <li v-for="term in terms" :key="term.id"><router-link :to="'/terminid/' + term.pali">{{ term.pali }}</router-link></li>
+    </ul>
   </v-container>
 </template>
 
@@ -8,7 +10,7 @@
   export default {
     computed: {
       terms () {
-        return this.$store.getters.loadedTerms
+        return this.$store.getters.termList
       }
     }
   }
