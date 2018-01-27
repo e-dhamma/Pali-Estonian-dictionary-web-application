@@ -112,7 +112,6 @@ export default {
   props: ['slug'],
   computed: {
     term () {
-      console.log(this.$store.getters.loadedTerm)
       return this.$store.getters.loadedTerm
     },
     formIsValid () {
@@ -121,6 +120,7 @@ export default {
   },
   created () {
     this.service = new TermCommentService()
+    this.$store.dispatch('addTerm', this.slug)
   },
   methods: {
     addComment () { // This method is perhaps not needed.

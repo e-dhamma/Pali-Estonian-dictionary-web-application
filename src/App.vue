@@ -92,7 +92,6 @@
         }
         this.$router.push({ name: 'Term', params: { slug: termSlug } })
         this.$store.dispatch('addTerm', termSlug)
-        console.log('searchTerm was fired')
       }
     }
   }

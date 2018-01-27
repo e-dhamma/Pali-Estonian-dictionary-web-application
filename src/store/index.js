@@ -94,11 +94,7 @@ export const store = new Vuex.Store({
       console.log(state.loadedTermList)
     },
     addTerm (state, term) {
-      // firstly should be cleaned
       state.loadedTerm = term
-      console.log(state.loadedTerm)
-      console.log('addTerm mutation was fired, term: ' + term.slug)
-      console.log(term)
     }
 
   },
@@ -116,7 +112,6 @@ export const store = new Vuex.Store({
         commit('addTerm', response.data)
       })
       .catch((error) => { console.log(error) })
-      console.log('addTerm action was fired with slug:' + slug)
     },
     addComment ({commit}, payload) {
       commit('addComment', payload)
