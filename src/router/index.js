@@ -9,6 +9,7 @@ import LetterToAdmin from '@/components/LetterToAdmin'
 import SignIn from '@/components/SignIn'
 import UserPage from '@/components/UserPage'
 import ForAdmin from '@/components/ForAdmin'
+import SearchResults from '@/components/SearchResults'
 
 Vue.use(Router)
 
@@ -24,6 +25,12 @@ export default new Router({
       props: true,
       name: 'Term',
       component: Term
+    },
+    {
+      path: '/otsing/',
+      props: true,
+      name: 'SearchResults',
+      component: SearchResults
     },
     {
       path: '/registreeru',

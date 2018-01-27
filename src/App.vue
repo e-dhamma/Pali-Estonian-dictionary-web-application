@@ -85,13 +85,20 @@
       },
       searchTerm () {
         if (this.searchInput === '') { return null }
-        const termSlug = this.$store.getters.searchForTerm(this.searchInput)
-        if (termSlug === undefined) {
+        const results = this.$store.getters.searchForTerm(this.searchInput)
+        if (results.length === 0) {
           this.showNotification('Otsing ei andnud tulemusi.')
           return null
+        } else if (results.length === 1) {
+          this.$router.push({ name: 'Term', params: { slug: results[0] } })
+          this.$store.dispatch('addTerm', results[0])
+        } else if (results.length > 1) {
+          this.results = results
+          this.$router.push({ name: 'SearchResults' })
+
+        } else {
+          console.log('Something nasty')
         }
-        this.$router.push({ name: 'Term', params: { slug: termSlug } })
-        this.$store.dispatch('addTerm', termSlug)
       }
     }
   }

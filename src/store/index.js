@@ -130,15 +130,15 @@ export const store = new Vuex.Store({
     },
     searchForTerm (state) { // Right now not working, because term-list API returns data in wrong format.
       return searchInput => { // No completely sure, why it works
-        const theTerm = state.loadedTermList.find((term) => {
-          if (term.pali.includes(searchInput)) { return term }
+        var results = []
+        state.loadedTermList.find((term) => {
+          if (term.pali.includes(searchInput)) { results.push(term.slug) }
           for (let i = 0; i < term.meaning_set.length; i++) {
-            if (term.meaning_set[i].est.includes(searchInput)) { return term }
-            if (term.meaning_set[i].eng.includes(searchInput)) { return term }
+            if (term.meaning_set[i].est.includes(searchInput)) { results.push(term.slug) }
+            if (term.meaning_set[i].eng.includes(searchInput)) { results.push(term.slug) }
           }
         })
-        if (theTerm === undefined) { return undefined }
-        return theTerm.slug
+        return results
       }
     }
   }
