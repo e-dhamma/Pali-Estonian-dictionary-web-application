@@ -5,7 +5,7 @@
         <v-layout>
             <v-flex>
                 <h1><i>{{ term.pali }}</i></h1>
-                <p><template v-if="term.wordClass || term.gender">({{ term.wordClass }}, {{ term.gender }}) </template><i>hääldus</i> <v-icon>play_arrow</v-icon></p>
+                <p><template v-if="term.wordClass || term.gender">({{ term.wordClass }}, {{ term.gender }}) </template><!--<i>hääldus</i> <v-icon>play_arrow</v-icon>--></p>
             </v-flex>
         </v-layout>
 
@@ -82,7 +82,7 @@
           </v-flex>
         </v-layout>
 
-        <!-- Translator's discussion-->
+        <!-- Translator's discussion
         <v-expansion-panel>
             <v-expansion-panel-content>
                 <div slot="header">Tõlkijate arutelu</div>
@@ -94,7 +94,7 @@
                     </v-card-text>
                 </v-card>
             </v-expansion-panel-content>
-        </v-expansion-panel>
+        </v-expansion-panel> -->
 
     </v-container>
 </template>
@@ -134,10 +134,3 @@ export default {
   }
 }
 </script>
-
-
-<style scoped>
-.intro {
-  font-size: 1.3em;
-}
-</style>

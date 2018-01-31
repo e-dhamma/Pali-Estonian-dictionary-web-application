@@ -16,17 +16,17 @@
         <v-text-field hide-details single-line label="Otsi" v-model="searchInput"></v-text-field>
         <v-btn flat @click="searchTerm"><v-icon>search</v-icon></v-btn>
 
-        <v-btn
+        <!-- <v-btn
         flat
         v-for='item in menueItems' :key='item.title'>
           <v-icon left>{{ item.icon }}</v-icon>
           {{ item.title }}
-        </v-btn>        
+        </v-btn>         -->
       </v-toolbar-items>
     </v-toolbar>
 
     <!-- For small screen -->
-    <v-navigation-drawer
+    <!-- <v-navigation-drawer
       temporary
       v-model='rightDrawer'
       fixed>
@@ -38,7 +38,7 @@
           <v-list-tile-title>{{ item.title }}</v-list-tile-title>
         </v-list-tile>
       </v-list>
-    </v-navigation-drawer>
+    </v-navigation-drawer> -->
 
     <!-- Snackbar for notifications -->
     <v-snackbar
@@ -65,14 +65,14 @@
         notification: '',
         // For search
         searchInput: '',
-        // For navigation drawer for small screen
-        rightDrawer: false,
-        // Toolbar buttons
-        menueItems: [
-          { icon: 'toc', title: 'Rohkem', link: '' },
-          { icon: 'notifications', title: 'Teavitused', link: '' },
-          { icon: 'account_circle', title: 'Logi sisse', link: '' }
-        ]
+        // // For navigation drawer for small screen
+        // rightDrawer: false,
+        // // Toolbar buttons
+        // menueItems: [
+        //   { icon: 'toc', title: 'Rohkem', link: '' },
+        //   { icon: 'notifications', title: 'Teavitused', link: '' },
+        //   { icon: 'account_circle', title: 'Logi sisse', link: '' }
+        // ]
       }
     },
     created () {
