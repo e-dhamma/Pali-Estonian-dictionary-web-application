@@ -57,8 +57,8 @@
   </v-container>
 </template>
 
-<<script>
-import { LetterToAdminService } from '../services/index'
+<script>
+import axios from 'axios'
 export default {
   data () {
     return {
@@ -73,9 +73,6 @@ export default {
       return this.name !== '' && this.email !== '' && this.message !== ''
     }
   },
-  created () {
-    this.service = new LetterToAdminService()
-  },
   methods: {
     addLetterToAdmin () {
       const letter = {
@@ -84,8 +81,7 @@ export default {
         title: this.title,
         message: this.message
       }
-      // this.$store.dispatch('addLetterToAdmin', letter)
-      this.service.save(letter)
+      axios.post('http://127.0.0.1:8000/api/letter-to-admin/', letter)
     }
   }
 }
