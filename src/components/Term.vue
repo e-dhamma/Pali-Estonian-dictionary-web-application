@@ -38,7 +38,8 @@
 
         <!-- Comments-->
         <div v-for='(comment, i) in term.comment_set' :key='"c" + i' class='mt-2'>
-            <p><b>{{ comment.author }}:</b> {{ comment.content}}<br>{{ comment.date | date }}</p>
+          <template v-if="!comment.approved"><p>See kommentar on hetkel nähtav ainult Sinule ja ootab haldaja kinnitamist.</p></template>
+          <p><b>{{ comment.author }}:</b> {{ comment.content}}<br>{{ comment.date | date }}</p>
         </div>
 
         <!-- Add comment form-->
@@ -129,7 +130,8 @@ export default {
         email: this.email,
         content: this.content
       }
-      axios.post('http://127.0.0.1:8000/api/term-comment/', comment)
+      // axios.post('http://127.0.0.1:8000/api/term-comment/', comment)
+      this.$store.dispatch('addComment', comment)
     }
   }
 }

@@ -26,6 +26,9 @@ export const store = new Vuex.Store({
     },
     addSearchResults (state, results) {
       state.searchResults = results
+    },
+    addComment (state, comment) {
+      state.loadedTerm.comment_set.push(comment)
     }
   },
   actions: { // Why are there no colons aftre fnction names?
@@ -48,6 +51,11 @@ export const store = new Vuex.Store({
     },
     addLetterToAdmin ({commit}, letter) {
       commit('addLetterToAdmin', letter)
+    },
+    addComment ({commit}, comment) {
+      axios.post('http://127.0.0.1:8000/api/term-comment/', comment)
+      comment.approved = false
+      commit('addComment', comment)
     }
   },
   getters: {
