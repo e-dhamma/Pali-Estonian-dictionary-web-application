@@ -100,7 +100,7 @@
 </template>
 
 <script>
-import { TermCommentService } from '../services/index'
+import axios from 'axios'
 export default {
   data () {
     return {
@@ -119,28 +119,17 @@ export default {
     }
   },
   created () {
-    this.service = new TermCommentService()
     this.$store.dispatch('addTerm', this.slug)
   },
   methods: {
-    addComment () { // This method is perhaps not needed.
-      const payload = {
-        term: this.term.pali,
-        comment: {
-          author: this.author,
-          email: this.email,
-          content: this.content
-        }
-      }
-      this.$store.dispatch('addComment', payload)
-
+    addComment () {
       const comment = {
         term: this.term.id,
         author: this.author,
         email: this.email,
         content: this.content
       }
-      this.service.save(comment)
+      axios.post('http://127.0.0.1:8000/api/term-comment/', comment)
     }
   }
 }
