@@ -54,7 +54,7 @@ export const store = new Vuex.Store({
     },
     addComment ({commit}, comment) {
       axios.post('http://127.0.0.1:8000/api/term-comment/', comment)
-      comment.approved = false
+      comment.notApproved = true
       commit('addComment', comment)
     }
   },

@@ -38,8 +38,8 @@
 
         <!-- Comments-->
         <div v-for='(comment, i) in term.comment_set' :key='"c" + i' class='mt-2'>
-          <template v-if="!comment.approved"><p>See kommentar on hetkel nähtav ainult Sinule ja ootab haldaja kinnitamist.</p></template>
-          <p><b>{{ comment.author }}:</b> {{ comment.content}}<br>{{ comment.date | date }}</p>
+          <p><template v-if="comment.notApproved">See kommentar on hetkel nähtav ainult Sinule ja ootab haldaja kinnitamist.<br></template>
+          <b>{{ comment.author }}:</b> {{ comment.content}}<br>{{ comment.date | date }}</p>
         </div>
 
         <!-- Add comment form-->
@@ -101,7 +101,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   data () {
     return {
@@ -130,8 +129,10 @@ export default {
         email: this.email,
         content: this.content
       }
-      // axios.post('http://127.0.0.1:8000/api/term-comment/', comment)
       this.$store.dispatch('addComment', comment)
+      this.author = '',
+      this.email = '',
+      this.content = ''
     }
   }
 }

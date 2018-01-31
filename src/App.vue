@@ -64,7 +64,7 @@
         snackbar: false,
         notification: '',
         // For search
-        searchInput: '',
+        searchInput: ''
         // // For navigation drawer for small screen
         // rightDrawer: false,
         // // Toolbar buttons
