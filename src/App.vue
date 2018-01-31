@@ -95,7 +95,6 @@
         } else if (results.length > 1) {
           this.$store.dispatch('addSearchResults', results)
           this.$router.push({ name: 'SearchResults' })
-
         } else {
           console.log('Something nasty')
         }
