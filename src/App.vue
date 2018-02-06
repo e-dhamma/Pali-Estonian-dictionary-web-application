@@ -6,14 +6,14 @@
       <v-btn icon @click.stop='rightDrawer = !rightDrawer' class='hidden-sm-and-up'>
         <v-icon>menu</v-icon>
       </v-btn>
-      <v-toolbar-title>
+      <v-toolbar-title class='hidden-xs-only'>
         <router-link to='/' tag='span' style='cursor: pointer'>Paali-Eesti sõnaraamat</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items class='hidden-xs-only'>
+      <v-toolbar-items>
 
         <!-- Search -->
-        <v-text-field hide-details single-line label="Otsi" v-model="searchInput"></v-text-field>
+        <v-text-field hide-details single-line label="Otsi" v-model="searchInput" @keyup.enter.native="searchTerm"></v-text-field>
         <v-btn flat @click="searchTerm"><v-icon>search</v-icon></v-btn>
 
         <!-- <v-btn

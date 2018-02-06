@@ -47,7 +47,6 @@ export default new Router({
       name: 'UserPage',
       component: UserPage
     },
-
     {
       path: '/kasutajale',
       name: 'InfoForUser',
