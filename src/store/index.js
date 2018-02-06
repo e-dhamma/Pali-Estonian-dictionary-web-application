@@ -8,16 +8,12 @@ export const store = new Vuex.Store({
   state: {
     loadedTermList: [],
     loadedTerm: {},
-    loadedLettersToAdmin: [],
-    loadedUsers: [
-      {username: 'jüri'}
-    ],
+    // loadedUsers: [
+    //   {username: 'jüri'}
+    // ],
     searchResults: []
   },
   mutations: {
-    addLetterToAdmin (state, letter) {
-      state.loadedLettersToAdmin.push(letter)
-    },
     addTermList (state, termList) {
       state.loadedTermList = state.loadedTermList.concat(termList)
     },
@@ -31,7 +27,7 @@ export const store = new Vuex.Store({
       state.loadedTerm.comment_set.push(comment)
     }
   },
-  actions: { // Why are there no colons aftre fnction names?
+  actions: {
     addTermList ({commit}) {
       axios.get('http://127.0.0.1:8000/api/term-list/')
       .then((response) => {
@@ -49,9 +45,6 @@ export const store = new Vuex.Store({
     addSearchResults ({commit}, results) {
       commit('addSearchResults', results)
     },
-    addLetterToAdmin ({commit}, letter) {
-      commit('addLetterToAdmin', letter)
-    },
     addComment ({commit}, comment) {
       axios.post('http://127.0.0.1:8000/api/term-comment/', comment)
       comment.notApproved = true
@@ -60,23 +53,20 @@ export const store = new Vuex.Store({
   },
   getters: {
     loadedTerm (state) { return state.loadedTerm },
-    loadedTerms (state) {
-      return state.loadedTerms
-    },
-    loadedUsers (state) {
-      return state.loadedUsers
-    },
-    searchForTerm (state) { // Right now not working, because term-list API returns data in wrong format.
-      return searchInput => { // No completely sure, why it works
-        var results = []
-        state.loadedTermList.find((term) => {
-          if (term.pali.includes(searchInput)) { results.push(term) }
-          for (let i = 0; i < term.meaning_set.length; i++) {
-            if (term.meaning_set[i].est.includes(searchInput)) { results.push(term) }
-            if (term.meaning_set[i].eng.includes(searchInput)) { results.push(term) }
-          }
+    // loadedUsers (state) {
+    //   return state.loadedUsers
+    // },
+    searchForTerm (state) {
+      return searchInput => {
+        var results = new Set()
+        state.loadedTermList.map((term) => {
+          if (term.pali.includes(searchInput)) { results.add(term) }
+          term.meaning_set.map((meaning) => {
+            if (meaning.est.includes(searchInput)) { results.add(term) }
+            if (meaning.eng.includes(searchInput)) { results.add(term) }
+          })
         })
-        return results
+        return Array.from(results)
       }
     },
     searchResults (state) {

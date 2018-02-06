@@ -127,7 +127,9 @@ export default {
         term: this.term.id,
         author: this.author,
         email: this.email,
-        content: this.content
+        content: this.content,
+        timestamp: new Date()
+
       }
       this.$store.dispatch('addComment', comment)
       this.author = ''

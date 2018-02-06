@@ -33,41 +33,40 @@ export default new Router({
       component: SearchResults
     },
     {
-      path: '/registreeru',
-      name: 'SignUp',
-      component: SignUp
-    },
-    {
-      path: '/logi-sisse',
-      name: 'SignIn',
-      component: SignIn
-    },
-    {
-      path: '/kasutajaleht',
-      name: 'UserPage',
-      component: UserPage
-    },
-    {
-      path: '/kasutajale',
-      name: 'InfoForUser',
-      component: InfoForUser
-    },
-    {
-      path: '/loetelu',
-      name: 'TermList',
-      component: TermList
-    },
-    {
       path: '/kiri-haldajale',
       name: 'LetterToAdmin',
       component: LetterToAdmin
     },
     {
-      path: '/haldajale',
-      name: 'ForAdmin',
-      component: ForAdmin
+      path: '/loetelu',
+      name: 'TermList',
+      component: TermList
     }
-
+    // {
+    //   path: '/registreeru',
+    //   name: 'SignUp',
+    //   component: SignUp
+    // },
+    // {
+    //   path: '/logi-sisse',
+    //   name: 'SignIn',
+    //   component: SignIn
+    // },
+    // {
+    //   path: '/kasutajaleht',
+    //   name: 'UserPage',
+    //   component: UserPage
+    // },
+    // {
+    //   path: '/kasutajale',
+    //   name: 'InfoForUser',
+    //   component: InfoForUser
+    // },
+    // {
+    //   path: '/haldajale',
+    //   name: 'ForAdmin',
+    //   component: ForAdmin
+    // }
   ],
   mode: 'history'
 })
