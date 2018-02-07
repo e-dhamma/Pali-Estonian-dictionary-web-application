@@ -60,10 +60,10 @@ export const store = new Vuex.Store({
       return searchInput => {
         var results = new Set()
         state.loadedTermList.map((term) => {
-          if (term.pali.includes(searchInput)) { results.add(term) }
+          if (term.pali.toLowerCase().includes(searchInput.toLowerCase())) { results.add(term) }
           term.meaning_set.map((meaning) => {
-            if (meaning.est.includes(searchInput)) { results.add(term) }
-            if (meaning.eng.includes(searchInput)) { results.add(term) }
+            if (meaning.est.toLowerCase().includes(searchInput.toLowerCase())) { results.add(term) }
+            if (meaning.eng.toLowerCase().includes(searchInput.toLowerCase())) { results.add(term) }
           })
         })
         return Array.from(results)
