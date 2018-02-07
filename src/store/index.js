@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import { API_BASE_URL } from '../constants'
 
 Vue.use(Vuex)
 
@@ -29,14 +30,14 @@ export const store = new Vuex.Store({
   },
   actions: {
     addTermList ({commit}) {
-      axios.get('http://127.0.0.1:8000/api/term-list/')
+      axios.get(API_BASE_URL + '/term-list/')
       .then((response) => {
         commit('addTermList', response.data)
       })
       .catch((error) => { console.log(error) })
     },
     addTerm ({commit}, slug) {
-      axios.get('http://127.0.0.1:8000/api/single-term/' + slug + '/')
+      axios.get(API_BASE_URL + '/single-term/' + slug + '/')
       .then((response) => {
         commit('addTerm', response.data)
       })
@@ -46,7 +47,7 @@ export const store = new Vuex.Store({
       commit('addSearchResults', results)
     },
     addComment ({commit}, comment) {
-      axios.post('http://127.0.0.1:8000/api/term-comment/', comment)
+      axios.post(API_BASE_URL + '/term-comment/', comment)
       comment.notApproved = true
       commit('addComment', comment)
     }
@@ -59,9 +60,9 @@ export const store = new Vuex.Store({
     searchForTerm (state) {
       return searchInput => {
         var results = new Set()
-        state.loadedTermList.map((term) => {
+        state.loadedTermList.forEach((term) => {
           if (term.pali.toLowerCase().includes(searchInput.toLowerCase())) { results.add(term) }
-          term.meaning_set.map((meaning) => {
+          term.meaning_set.forEach((meaning) => {
             if (meaning.est.toLowerCase().includes(searchInput.toLowerCase())) { results.add(term) }
             if (meaning.eng.toLowerCase().includes(searchInput.toLowerCase())) { results.add(term) }
           })
