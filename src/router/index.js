@@ -64,6 +64,6 @@ export default new Router({
     //   name: 'ForAdmin',
     //   component: ForAdmin
     // }
-  ],
-  mode: 'history'
+  ]
+  // mode: 'history'
 })
