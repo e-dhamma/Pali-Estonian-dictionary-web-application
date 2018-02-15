@@ -48,7 +48,7 @@ export const store = new Vuex.Store({
     },
     addComment ({commit}, comment) {
       axios.post(API_BASE_URL + '/term-comment/', comment)
-      comment.notApproved = true
+      comment.preview = true
       commit('addComment', comment)
     }
   },

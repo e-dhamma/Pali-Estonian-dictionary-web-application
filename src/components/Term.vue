@@ -37,8 +37,8 @@
         <hr class='mt-4'>
 
         <!-- Comments-->
-        <div v-for='(comment, i) in term.comment_set' :key='"c" + i' v-if="comment.approved == true || comment.notApproved" class='mt-2'>
-          <p><template v-if="comment.notApproved">See kommentar on hetkel nähtav ainult Sinule ja ootab haldaja kinnitamist.<br></template>
+        <div v-for='(comment, i) in term.comment_set' :key='"c" + i' v-if="comment.approved == true || comment.preview" class='mt-2'>
+          <p><template v-if="comment.preview">See kommentar on hetkel nähtav ainult Sinule ja ootab haldaja kinnitamist.<br></template>
           <b>{{ comment.author }}:</b> {{ comment.content}}<br>{{ comment.timestamp | date }}</p>
         </div>
 
