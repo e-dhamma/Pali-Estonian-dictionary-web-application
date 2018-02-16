@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import { API_BASE_URL } from '../constants'
+import Cookies from 'js-cookie'
 
 Vue.use(Vuex)
 
@@ -47,7 +48,9 @@ export const store = new Vuex.Store({
       commit('addSearchResults', results)
     },
     addComment ({commit}, comment) {
-      axios.post(API_BASE_URL + '/term-comment/', comment)
+      var csrftoken = Cookies.get('csrftoken')
+      var config = csrftoken ? { headers: { 'X-CSRFToken': csrftoken } } : null
+      axios.post(API_BASE_URL + '/term-comment/', comment, config)
       comment.preview = true
       commit('addComment', comment)
     }
