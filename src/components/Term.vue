@@ -78,7 +78,7 @@
         </v-layout>
         <v-layout>
           <v-flex>
-            <v-btn :disabled='!formIsValid' @click.native='addComment' >Lisa kommentaar</v-btn>
+            <v-btn :disabled='!isFormValid' @click.native='addComment' >Lisa kommentaar</v-btn>
           </v-flex>
         </v-layout>
 
@@ -112,8 +112,12 @@ export default {
   },
   props: ['slug'],
   computed: {
-    formIsValid () {
+    isFormValid () {
       return this.name !== '' && this.email !== '' && this.message !== ''
+    },
+    isEmailValid () {
+      var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+      return re.test(this.email)
     }
   },
   created () {
@@ -121,6 +125,10 @@ export default {
   },
   methods: {
     addComment () {
+      if (!this.isEmailValid) {
+        alert('Sisesta kehtiv email.')
+        return
+      }
       const comment = {
         term: this.term.id,
         author: this.author,
