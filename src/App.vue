@@ -2,18 +2,22 @@
   <v-app>
 
     <!-- Toolbar -->
-    <v-toolbar dense>
+    <v-toolbar>
       <v-btn icon @click.stop='rightDrawer = !rightDrawer' class='hidden-sm-and-up'>
         <v-icon>menu</v-icon>
       </v-btn>
       <v-toolbar-title class='hidden-xs-only'>
+        <v-avatar>
+          <img src="../static/DharmaWheel.png" alt="logo">
+        </v-avatar>
         <router-link to='/' tag='span' style='cursor: pointer'>Paali-Eesti sõnaraamat</router-link>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items>
 
+      <v-toolbar-items>
+        <!-- Spacer -->
+        <div style="width: 100px;"></div>
         <!-- Search -->
-        <v-text-field hide-details single-line label="Otsi" v-model="searchInput" @keyup.enter.native="searchTerm"></v-text-field>
+        <v-text-field label="Otsi" v-model="searchInput" @keyup.enter.native="searchTerm" ></v-text-field>
         <v-btn flat @click="searchTerm"><v-icon>search</v-icon></v-btn>
 
         <!-- <v-btn
@@ -52,7 +56,7 @@
 
   <!-- Main content -->
   <router-view></router-view>
-  
+
   </v-app>
 </template>
 
