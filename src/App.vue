@@ -7,13 +7,13 @@
       fixed
       app
       width="200"
-      class="orange lighten-5"
+      class="brown lighten-5"
     >
       <v-list>
         <v-list-tile v-for="term in termList" :key="term.id">
           <v-list-tile-title>
             <router-link :to="'/terminid/' + term.slug">
-              {{term.pali}}
+              <span class="term-list-item">{{term.pali}}</span>
             </router-link>
           </v-list-tile-title>
         </v-list-tile>
@@ -24,7 +24,6 @@
       :clipped-left="$vuetify.breakpoint.lgAndUp"
       app
       fixed
-      class="orange lighten-2"
     >
       <v-btn icon @click.stop='rightDrawer = !rightDrawer' class='hidden-sm-and-up'>
         <v-icon>menu</v-icon>
@@ -38,11 +37,11 @@
 
       <v-toolbar-items>
         <!-- Spacer -->
-        <div style="width: 100px;"></div>
+        <div style="width: 85px;"></div>
         <!-- Search -->
         <v-text-field label="Otsi" v-model="searchInput" @keyup.enter.native="searchTerm" ></v-text-field>
-        <v-btn flat @click="searchTerm"><v-icon>search</v-icon></v-btn>
-
+        <v-btn icon @click="searchTerm" color="primary"><v-icon>search</v-icon></v-btn>
+        <v-spacer></v-spacer>
         <!-- <v-btn
         flat
         v-for='item in menueItems' :key='item.title'>
@@ -135,3 +134,9 @@
     }
   }
 </script>
+
+<style scoped>
+.term-list-item {
+  color: rgb(205,90,7)
+}
+</style>
