@@ -6,6 +6,7 @@
       v-model="drawer"
       fixed
       app
+      width="200"
     >
       <v-list>
         <v-list-tile v-for="term in termList" :key="term.id">
