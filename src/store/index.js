@@ -19,9 +19,6 @@ export const store = new Vuex.Store({
     addSearchResults (state, results) {
       state.searchResults = results
     }
-    // addComment (state, comment) {
-    //   state.loadedTerm.comment_set.push(comment)
-    // }
   },
   actions: {
     addTermList ({commit}) {
@@ -34,11 +31,6 @@ export const store = new Vuex.Store({
     addSearchResults ({commit}, results) {
       commit('addSearchResults', results)
     }
-    // addComment ({commit}, comment) {
-    //   API.addComment(comment)
-    //   comment.preview = true
-    //   commit('addComment', comment)
-    // }
   },
   getters: {
     // loadedUsers (state) {

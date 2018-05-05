@@ -129,9 +129,12 @@ export default {
         timestamp: new Date()
 
       }
-      API.addComment(comment)
-      comment.preview = true
-      this.term.comment_set.push(comment)
+      API.addComment(comment).then(() => {
+        comment.preview = true
+        this.term.comment_set.push(comment)
+      }).catch(() => {
+        alert('Tekkis viga. Sinu kommentaar ei salvestunud.')
+      })
       this.author = ''
       this.email = ''
       this.content = ''
