@@ -7,6 +7,7 @@
       fixed
       app
       width="200"
+      class="orange lighten-5"
     >
       <v-list>
         <v-list-tile v-for="term in termList" :key="term.id">
@@ -23,6 +24,7 @@
       :clipped-left="$vuetify.breakpoint.lgAndUp"
       app
       fixed
+      class="orange lighten-2"
     >
       <v-btn icon @click.stop='rightDrawer = !rightDrawer' class='hidden-sm-and-up'>
         <v-icon>menu</v-icon>
