@@ -7,6 +7,15 @@
       fixed
       app
     >
+      <v-list>
+        <v-list-tile v-for="term in termList" :key="term.id">
+          <v-list-tile-title>
+            <router-link :to="'/terminid/' + term.slug">
+              {{term.pali}}
+            </router-link>
+          </v-list-tile-title>
+        </v-list-tile>
+      </v-list>
     </v-navigation-drawer>
     <!-- Toolbar -->
     <v-toolbar
@@ -95,6 +104,11 @@
     },
     created () {
       this.$store.dispatch('addTermList')
+    },
+    computed: {
+      termList () {
+        return this.$store.getters.termList
+      }
     },
     methods: {
       showNotification (notification) {
