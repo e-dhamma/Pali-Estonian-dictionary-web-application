@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
-import { API_BASE_URL } from '../constants'
-import Cookies from 'js-cookie'
+import { API } from '../api'
 
 Vue.use(Vuex)
 
@@ -31,14 +29,14 @@ export const store = new Vuex.Store({
   },
   actions: {
     addTermList ({commit}) {
-      axios.get(API_BASE_URL + '/term-list/')
+      API.getTermList()
       .then((response) => {
         commit('addTermList', response.data)
       })
       .catch((error) => { console.log(error) })
     },
     addTerm ({commit}, slug) {
-      axios.get(API_BASE_URL + '/single-term/' + slug + '/')
+      API.getTerm(slug)
       .then((response) => {
         commit('addTerm', response.data)
       })
@@ -48,9 +46,7 @@ export const store = new Vuex.Store({
       commit('addSearchResults', results)
     },
     addComment ({commit}, comment) {
-      var csrftoken = Cookies.get('csrftoken')
-      var config = csrftoken ? { headers: { 'X-CSRFToken': csrftoken } } : null
-      axios.post(API_BASE_URL + '/term-comment/', comment, config)
+      API.addComment(comment)
       comment.preview = true
       commit('addComment', comment)
     }
