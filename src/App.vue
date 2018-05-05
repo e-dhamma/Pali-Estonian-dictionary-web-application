@@ -35,7 +35,6 @@
         <router-link to='/' tag='span' style='cursor: pointer'>Paali-Eesti sõnaraamat</router-link>
       </v-toolbar-title>
 
-      <v-toolbar-items>
         <!-- Spacer -->
         <div style="width: 85px;"></div>
         <!-- Search -->
@@ -48,7 +47,6 @@
           <v-icon left>{{ item.icon }}</v-icon>
           {{ item.title }}
         </v-btn>         -->
-      </v-toolbar-items>
     </v-toolbar>
 
     <!-- For small screen -->
