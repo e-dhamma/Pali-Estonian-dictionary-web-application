@@ -52,7 +52,7 @@
               id='name'
               v-model='author'
               required
-            ></v-text-field>                
+            ></v-text-field>
           </v-flex>
           <v-flex xs12 sm4>
             <v-text-field
@@ -61,7 +61,7 @@
               id='email'
               v-model='email'
               required
-            ></v-text-field>                
+            ></v-text-field>
           </v-flex>
         </v-layout>
         <v-layout row>
@@ -73,7 +73,7 @@
               v-model='content'
               required
               multi-line
-            ></v-text-field>                
+            ></v-text-field>
           </v-flex>
         </v-layout>
         <v-layout>
@@ -100,9 +100,11 @@
 </template>
 
 <script>
+import { API } from '../api'
 export default {
   data () {
     return {
+      term: {},
       author: '',
       email: '',
       content: ''
@@ -110,15 +112,12 @@ export default {
   },
   props: ['slug'],
   computed: {
-    term () {
-      return this.$store.getters.loadedTerm
-    },
     formIsValid () {
       return this.name !== '' && this.email !== '' && this.message !== ''
     }
   },
   created () {
-    this.$store.dispatch('addTerm', this.slug)
+    API.getTerm(this.slug).then(response => { this.term = response.data })
   },
   methods: {
     addComment () {
@@ -130,7 +129,9 @@ export default {
         timestamp: new Date()
 
       }
-      this.$store.dispatch('addComment', comment)
+      API.addComment(comment)
+      comment.preview = true
+      this.term.comment_set.push(comment)
       this.author = ''
       this.email = ''
       this.content = ''

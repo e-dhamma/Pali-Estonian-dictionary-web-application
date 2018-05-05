@@ -7,7 +7,6 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     loadedTermList: [],
-    loadedTerm: {},
     // loadedUsers: [
     //   {username: 'jüri'}
     // ],
@@ -17,15 +16,12 @@ export const store = new Vuex.Store({
     addTermList (state, termList) {
       state.loadedTermList = state.loadedTermList.concat(termList)
     },
-    addTerm (state, term) {
-      state.loadedTerm = term
-    },
     addSearchResults (state, results) {
       state.searchResults = results
-    },
-    addComment (state, comment) {
-      state.loadedTerm.comment_set.push(comment)
     }
+    // addComment (state, comment) {
+    //   state.loadedTerm.comment_set.push(comment)
+    // }
   },
   actions: {
     addTermList ({commit}) {
@@ -35,24 +31,16 @@ export const store = new Vuex.Store({
       })
       .catch((error) => { console.log(error) })
     },
-    addTerm ({commit}, slug) {
-      API.getTerm(slug)
-      .then((response) => {
-        commit('addTerm', response.data)
-      })
-      .catch((error) => { console.log(error) })
-    },
     addSearchResults ({commit}, results) {
       commit('addSearchResults', results)
-    },
-    addComment ({commit}, comment) {
-      API.addComment(comment)
-      comment.preview = true
-      commit('addComment', comment)
     }
+    // addComment ({commit}, comment) {
+    //   API.addComment(comment)
+    //   comment.preview = true
+    //   commit('addComment', comment)
+    // }
   },
   getters: {
-    loadedTerm (state) { return state.loadedTerm },
     // loadedUsers (state) {
     //   return state.loadedUsers
     // },
