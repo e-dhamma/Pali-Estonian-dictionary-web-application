@@ -55,7 +55,7 @@
     </v-snackbar>
 
   <!-- Main content -->
-  <router-view></router-view>
+  <router-view :key="$route.fullPath"></router-view>
 
   </v-app>
 </template>
@@ -95,7 +95,6 @@
           return null
         } else if (results.length === 1) {
           this.$router.push({ name: 'Term', params: { slug: results[0].slug } })
-          this.$store.dispatch('addTerm', results[0].slug)
         } else if (results.length > 1) {
           this.$store.dispatch('addSearchResults', results)
           this.$router.push({ name: 'SearchResults' })

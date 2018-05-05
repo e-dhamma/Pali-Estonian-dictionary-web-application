@@ -52,7 +52,7 @@
               id='name'
               v-model='author'
               required
-            ></v-text-field>                
+            ></v-text-field>
           </v-flex>
           <v-flex xs12 sm4>
             <v-text-field
@@ -61,7 +61,7 @@
               id='email'
               v-model='email'
               required
-            ></v-text-field>                
+            ></v-text-field>
           </v-flex>
         </v-layout>
         <v-layout row>
@@ -73,12 +73,12 @@
               v-model='content'
               required
               multi-line
-            ></v-text-field>                
+            ></v-text-field>
           </v-flex>
         </v-layout>
         <v-layout>
           <v-flex>
-            <v-btn :disabled='!formIsValid' @click.native='addComment' >Lisa kommentaar</v-btn>
+            <v-btn :disabled='!isFormValid' @click.native='addComment' >Lisa kommentaar</v-btn>
           </v-flex>
         </v-layout>
 
@@ -100,9 +100,11 @@
 </template>
 
 <script>
+import { API } from '../api'
 export default {
   data () {
     return {
+      term: {},
       author: '',
       email: '',
       content: ''
@@ -110,18 +112,24 @@ export default {
   },
   props: ['slug'],
   computed: {
-    term () {
-      return this.$store.getters.loadedTerm
-    },
-    formIsValid () {
+    isFormValid () {
       return this.name !== '' && this.email !== '' && this.message !== ''
+    },
+    isEmailValid () {
+      // eslint-disable-next-line
+      var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+      return re.test(this.email)
     }
   },
   created () {
-    this.$store.dispatch('addTerm', this.slug)
+    API.getTerm(this.slug).then(response => { this.term = response.data })
   },
   methods: {
     addComment () {
+      if (!this.isEmailValid) {
+        alert('Sisesta kehtiv email.')
+        return
+      }
       const comment = {
         term: this.term.id,
         author: this.author,
@@ -130,7 +138,12 @@ export default {
         timestamp: new Date()
 
       }
-      this.$store.dispatch('addComment', comment)
+      API.addComment(comment).then(() => {
+        comment.preview = true
+        this.term.comment_set.push(comment)
+      }).catch(() => {
+        alert('Tekkis viga. Sinu kommentaar ei salvestunud.')
+      })
       this.author = ''
       this.email = ''
       this.content = ''

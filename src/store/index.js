@@ -1,15 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
-import { API_BASE_URL } from '../constants'
-import Cookies from 'js-cookie'
+import { API } from '../api'
 
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
     loadedTermList: [],
-    loadedTerm: {},
     // loadedUsers: [
     //   {username: 'jüri'}
     // ],
@@ -19,44 +16,23 @@ export const store = new Vuex.Store({
     addTermList (state, termList) {
       state.loadedTermList = state.loadedTermList.concat(termList)
     },
-    addTerm (state, term) {
-      state.loadedTerm = term
-    },
     addSearchResults (state, results) {
       state.searchResults = results
-    },
-    addComment (state, comment) {
-      state.loadedTerm.comment_set.push(comment)
     }
   },
   actions: {
     addTermList ({commit}) {
-      axios.get(API_BASE_URL + '/term-list/')
+      API.getTermList()
       .then((response) => {
         commit('addTermList', response.data)
       })
       .catch((error) => { console.log(error) })
     },
-    addTerm ({commit}, slug) {
-      axios.get(API_BASE_URL + '/single-term/' + slug + '/')
-      .then((response) => {
-        commit('addTerm', response.data)
-      })
-      .catch((error) => { console.log(error) })
-    },
     addSearchResults ({commit}, results) {
       commit('addSearchResults', results)
-    },
-    addComment ({commit}, comment) {
-      var csrftoken = Cookies.get('csrftoken')
-      var config = csrftoken ? { headers: { 'X-CSRFToken': csrftoken } } : null
-      axios.post(API_BASE_URL + '/term-comment/', comment, config)
-      comment.preview = true
-      commit('addComment', comment)
     }
   },
   getters: {
-    loadedTerm (state) { return state.loadedTerm },
     // loadedUsers (state) {
     //   return state.loadedUsers
     // },
