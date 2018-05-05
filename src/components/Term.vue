@@ -116,6 +116,7 @@ export default {
       return this.name !== '' && this.email !== '' && this.message !== ''
     },
     isEmailValid () {
+      // eslint-disable-next-line
       var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
       return re.test(this.email)
     }
