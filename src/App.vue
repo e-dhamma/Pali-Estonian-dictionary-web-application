@@ -1,8 +1,19 @@
 <template>
   <v-app>
-
+    <!-- Term-list -->
+    <v-navigation-drawer
+      :clipped="$vuetify.breakpoint.lgAndUp"
+      v-model="drawer"
+      fixed
+      app
+    >
+    </v-navigation-drawer>
     <!-- Toolbar -->
-    <v-toolbar>
+    <v-toolbar
+      :clipped-left="$vuetify.breakpoint.lgAndUp"
+      app
+      fixed
+    >
       <v-btn icon @click.stop='rightDrawer = !rightDrawer' class='hidden-sm-and-up'>
         <v-icon>menu</v-icon>
       </v-btn>
@@ -55,7 +66,9 @@
     </v-snackbar>
 
   <!-- Main content -->
-  <router-view :key="$route.fullPath"></router-view>
+  <v-content>
+    <router-view :key="$route.fullPath"></router-view>
+  </v-content>
 
   </v-app>
 </template>
@@ -64,6 +77,7 @@
   export default {
     data () {
       return {
+        drawer: null,
         // For snackbar
         snackbar: false,
         notification: '',
