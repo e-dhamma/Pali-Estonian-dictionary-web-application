@@ -18,7 +18,7 @@ export const store = new Vuex.Store({
         var itemA = a.pali.toUpperCase()
         var itemB = b.pali.toUpperCase()
         return (itemA < itemB) ? -1 : (itemA > itemB) ? 1 : 0
-    })
+      })
       state.loadedTermList = state.loadedTermList.concat(termList)
     },
     addSearchResults (state, results) {
