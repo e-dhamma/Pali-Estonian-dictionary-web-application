@@ -36,7 +36,7 @@
         </v-layout>
 
         <!-- Comments-->
-        <h4 class='mt-4'>{{numberOfApprovedComments}} kommentaar<template v-if="numberOfApprovedComments != 1">i</template></h4>
+        <h2 class='comment-section-header mt-4'>{{numberOfApprovedComments}} kommentaar<template v-if="numberOfApprovedComments != 1">i</template></h2>
         <hr>
         <div v-for='(comment, i) in term.comment_set' :key='"c" + i' v-if="comment.approved == true || comment.preview" class='mt-2'>
           <p><b>{{ comment.author }}:</b> {{ comment.content}}<br>{{ comment.timestamp | date }}</p>
@@ -156,3 +156,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.comment-section-header {
+  font-weight: normal
+}
+</style>
