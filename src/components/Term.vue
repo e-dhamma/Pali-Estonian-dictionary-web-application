@@ -34,9 +34,10 @@
                 </v-expansion-panel>
             </v-flex>
         </v-layout>
-        <hr class='mt-4'>
 
         <!-- Comments-->
+        <h4 class='mt-4'>{{numberOfApprovedComments}} kommentaar<template v-if="numberOfApprovedComments != 1">i</template></h4>
+        <hr>
         <div v-for='(comment, i) in term.comment_set' :key='"c" + i' v-if="comment.approved == true || comment.preview" class='mt-2'>
           <p><b>{{ comment.author }}:</b> {{ comment.content}}<br>{{ comment.timestamp | date }}</p>
         </div>
@@ -104,7 +105,7 @@ import { API } from '../api'
 export default {
   data () {
     return {
-      term: {},
+      term: { comment_set: [] },
       author: '',
       email: '',
       message: ''
@@ -119,6 +120,10 @@ export default {
       // eslint-disable-next-line
       var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
       return re.test(this.email)
+    },
+    numberOfApprovedComments () {
+      var count = this.term.comment_set.filter(comment => comment.approved)
+      return count.length
     }
   },
   created () {
