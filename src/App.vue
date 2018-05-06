@@ -135,7 +135,7 @@
 
 <style scoped>
 .term-list-item {
-  color: rgb(205,90,7);
+  color: #cd5a07;
   text-decoration: none
 }
 </style>
