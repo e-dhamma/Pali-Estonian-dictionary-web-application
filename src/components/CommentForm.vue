@@ -1,44 +1,44 @@
 <template>
-    <v-container>
-      <v-layout mt-3><v-flex><h3>Lisa uus kommentar</h3></v-flex></v-layout>
-      <v-layout row>
-        <v-flex xs12 sm4>
-          <v-text-field
-            name="author"
-            label="Nimi"
-            id='author'
-            v-model='author'
-            required
-          ></v-text-field>
-        </v-flex>
-        <v-flex xs12 sm4>
-          <v-text-field
-            name="email"
-            label="E-mail (ei kuvata avalikult)"
-            id='email'
-            v-model='email'
-            required
-          ></v-text-field>
-        </v-flex>
-      </v-layout>
-      <v-layout row>
-        <v-flex xs12 sm6>
-          <v-text-field
-            name="message"
-            label="Sõnum"
-            id='message'
-            v-model='message'
-            required
-            multi-line
-          ></v-text-field>
-        </v-flex>
-      </v-layout>
-      <v-layout>
-        <v-flex>
-          <v-btn :disabled='!isFormValid' @click.native='addComment' color="primary">Lisa kommentaar</v-btn>
-        </v-flex>
-      </v-layout>
-    </v-container>
+  <div>
+    <v-layout mt-3><v-flex><h3>Lisa uus kommentar</h3></v-flex></v-layout>
+    <v-layout row>
+      <v-flex xs12 sm4>
+        <v-text-field
+          name="author"
+          label="Nimi"
+          id='author'
+          v-model='author'
+          required
+        ></v-text-field>
+      </v-flex>
+      <v-flex xs12 sm4>
+        <v-text-field
+          name="email"
+          label="E-mail (ei kuvata avalikult)"
+          id='email'
+          v-model='email'
+          required
+        ></v-text-field>
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex xs12 sm6>
+        <v-text-field
+          name="message"
+          label="Sõnum"
+          id='message'
+          v-model='message'
+          required
+          multi-line
+        ></v-text-field>
+      </v-flex>
+    </v-layout>
+    <v-layout>
+      <v-flex>
+        <v-btn :disabled='!isFormValid' @click.native='addComment' color="primary">Lisa kommentaar</v-btn>
+      </v-flex>
+    </v-layout>
+  </div>
 </template>
 
 <script>
@@ -89,9 +89,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.comment-section-header {
-  font-weight: normal
-}
-</style>
