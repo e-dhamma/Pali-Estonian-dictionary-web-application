@@ -1,8 +1,30 @@
 <template>
   <v-app>
-
+    <!-- Term-list -->
+    <v-navigation-drawer
+      :clipped="$vuetify.breakpoint.lgAndUp"
+      v-model="drawer"
+      fixed
+      app
+      width="200"
+      class="brown lighten-5"
+    >
+      <v-list>
+        <v-list-tile v-for="term in termList" :key="term.id">
+          <v-list-tile-title>
+            <router-link :to="'/terminid/' + term.slug" class="term-list-item">
+              <span class="term-list-item">{{term.pali}}</span>
+            </router-link>
+          </v-list-tile-title>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
     <!-- Toolbar -->
-    <v-toolbar>
+    <v-toolbar
+      :clipped-left="$vuetify.breakpoint.lgAndUp"
+      app
+      fixed
+    >
       <v-btn icon @click.stop='rightDrawer = !rightDrawer' class='hidden-sm-and-up'>
         <v-icon>menu</v-icon>
       </v-btn>
@@ -13,20 +35,18 @@
         <router-link to='/' tag='span' style='cursor: pointer'>Paali-Eesti sõnaraamat</router-link>
       </v-toolbar-title>
 
-      <v-toolbar-items>
         <!-- Spacer -->
-        <div style="width: 100px;"></div>
+        <div style="width: 85px;"></div>
         <!-- Search -->
         <v-text-field label="Otsi" v-model="searchInput" @keyup.enter.native="searchTerm" ></v-text-field>
-        <v-btn flat @click="searchTerm"><v-icon>search</v-icon></v-btn>
-
+        <v-btn icon @click="searchTerm" color="primary"><v-icon>search</v-icon></v-btn>
+        <v-spacer></v-spacer>
         <!-- <v-btn
         flat
         v-for='item in menueItems' :key='item.title'>
           <v-icon left>{{ item.icon }}</v-icon>
           {{ item.title }}
         </v-btn>         -->
-      </v-toolbar-items>
     </v-toolbar>
 
     <!-- For small screen -->
@@ -55,7 +75,9 @@
     </v-snackbar>
 
   <!-- Main content -->
-  <router-view :key="$route.fullPath"></router-view>
+  <v-content>
+    <router-view :key="$route.fullPath"></router-view>
+  </v-content>
 
   </v-app>
 </template>
@@ -64,6 +86,7 @@
   export default {
     data () {
       return {
+        drawer: null,
         // For snackbar
         snackbar: false,
         notification: '',
@@ -81,6 +104,11 @@
     },
     created () {
       this.$store.dispatch('addTermList')
+    },
+    computed: {
+      termList () {
+        return this.$store.getters.termList
+      }
     },
     methods: {
       showNotification (notification) {
@@ -104,3 +132,10 @@
     }
   }
 </script>
+
+<style scoped>
+.term-list-item {
+  color: #cd5a07;
+  text-decoration: none
+}
+</style>

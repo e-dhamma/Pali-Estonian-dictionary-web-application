@@ -34,9 +34,10 @@
                 </v-expansion-panel>
             </v-flex>
         </v-layout>
-        <hr class='mt-4'>
 
         <!-- Comments-->
+        <h2 class='comment-section-header mt-4'>{{numberOfApprovedComments}} kommentaar<template v-if="numberOfApprovedComments != 1">i</template></h2>
+        <hr>
         <div v-for='(comment, i) in term.comment_set' :key='"c" + i' v-if="comment.approved == true || comment.preview" class='mt-2'>
           <p><b>{{ comment.author }}:</b> {{ comment.content}}<br>{{ comment.timestamp | date }}</p>
         </div>
@@ -47,9 +48,9 @@
         <v-layout row>
           <v-flex xs12 sm4>
             <v-text-field
-              name="name"
+              name="author"
               label="Nimi"
-              id='name'
+              id='author'
               v-model='author'
               required
             ></v-text-field>
@@ -70,7 +71,7 @@
               name="message"
               label="Sõnum"
               id='message'
-              v-model='content'
+              v-model='message'
               required
               multi-line
             ></v-text-field>
@@ -78,7 +79,7 @@
         </v-layout>
         <v-layout>
           <v-flex>
-            <v-btn :disabled='!isFormValid' @click.native='addComment' >Lisa kommentaar</v-btn>
+            <v-btn :disabled='!isFormValid' @click.native='addComment' color="primary">Lisa kommentaar</v-btn>
           </v-flex>
         </v-layout>
 
@@ -104,21 +105,25 @@ import { API } from '../api'
 export default {
   data () {
     return {
-      term: {},
+      term: { comment_set: [] },
       author: '',
       email: '',
-      content: ''
+      message: ''
     }
   },
   props: ['slug'],
   computed: {
     isFormValid () {
-      return this.name !== '' && this.email !== '' && this.message !== ''
+      return this.author !== '' && this.email !== '' && this.message !== ''
     },
     isEmailValid () {
       // eslint-disable-next-line
       var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
       return re.test(this.email)
+    },
+    numberOfApprovedComments () {
+      var count = this.term.comment_set.filter(comment => comment.approved)
+      return count.length
     }
   },
   created () {
@@ -134,7 +139,7 @@ export default {
         term: this.term.id,
         author: this.author,
         email: this.email,
-        content: this.content,
+        content: this.message,
         timestamp: new Date()
 
       }
@@ -151,3 +156,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.comment-section-header {
+  font-weight: normal
+}
+</style>

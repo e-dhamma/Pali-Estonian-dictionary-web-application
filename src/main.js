@@ -13,7 +13,7 @@ import DataFilter from './filters/date'
 Vue.filter('date', DataFilter)
 
 Vue.use(Vuetify, { theme: {
-  primary: '#ee44aa',
+  primary: '#cd5a07',
   secondary: '#424242',
   accent: '#82B1FF',
   error: '#FF5252',
