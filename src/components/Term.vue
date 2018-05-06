@@ -47,9 +47,9 @@
         <v-layout row>
           <v-flex xs12 sm4>
             <v-text-field
-              name="name"
+              name="author"
               label="Nimi"
-              id='name'
+              id='author'
               v-model='author'
               required
             ></v-text-field>
@@ -70,7 +70,7 @@
               name="message"
               label="Sõnum"
               id='message'
-              v-model='content'
+              v-model='message'
               required
               multi-line
             ></v-text-field>
@@ -78,7 +78,7 @@
         </v-layout>
         <v-layout>
           <v-flex>
-            <v-btn :disabled='!isFormValid' @click.native='addComment' >Lisa kommentaar</v-btn>
+            <v-btn :disabled='!isFormValid' @click.native='addComment' color="primary">Lisa kommentaar</v-btn>
           </v-flex>
         </v-layout>
 
@@ -107,13 +107,13 @@ export default {
       term: {},
       author: '',
       email: '',
-      content: ''
+      message: ''
     }
   },
   props: ['slug'],
   computed: {
     isFormValid () {
-      return this.name !== '' && this.email !== '' && this.message !== ''
+      return this.author !== '' && this.email !== '' && this.message !== ''
     },
     isEmailValid () {
       // eslint-disable-next-line
@@ -134,7 +134,7 @@ export default {
         term: this.term.id,
         author: this.author,
         email: this.email,
-        content: this.content,
+        content: this.message,
         timestamp: new Date()
 
       }
