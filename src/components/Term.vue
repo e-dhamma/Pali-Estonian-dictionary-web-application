@@ -44,45 +44,7 @@
 
         <!-- Add comment form-->
         <hr>
-        <v-layout mt-3><v-flex><h3>Lisa uus kommentar</h3></v-flex></v-layout>
-        <v-layout row>
-          <v-flex xs12 sm4>
-            <v-text-field
-              name="author"
-              label="Nimi"
-              id='author'
-              v-model='author'
-              required
-            ></v-text-field>
-          </v-flex>
-          <v-flex xs12 sm4>
-            <v-text-field
-              name="email"
-              label="E-mail (ei kuvata avalikult)"
-              id='email'
-              v-model='email'
-              required
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex xs12 sm6>
-            <v-text-field
-              name="message"
-              label="Sõnum"
-              id='message'
-              v-model='message'
-              required
-              multi-line
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-layout>
-          <v-flex>
-            <v-btn :disabled='!isFormValid' @click.native='addComment' color="primary">Lisa kommentaar</v-btn>
-          </v-flex>
-        </v-layout>
-
+        <comment-form :termID="term.id"></comment-form>
         <!-- Translator's discussion
         <v-expansion-panel>
             <v-expansion-panel-content>
@@ -102,25 +64,18 @@
 
 <script>
 import { API } from '../api'
+import CommentForm from './CommentForm'
 export default {
   data () {
     return {
-      term: { comment_set: [] },
-      author: '',
-      email: '',
-      message: ''
+      term: { comment_set: [] }
     }
   },
   props: ['slug'],
+  components: {
+    'comment-form': CommentForm
+  },
   computed: {
-    isFormValid () {
-      return this.author !== '' && this.email !== '' && this.message !== ''
-    },
-    isEmailValid () {
-      // eslint-disable-next-line
-      var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-      return re.test(this.email)
-    },
     numberOfApprovedComments () {
       var count = this.term.comment_set.filter(comment => comment.approved)
       return count.length
