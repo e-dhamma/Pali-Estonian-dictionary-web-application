@@ -12,7 +12,7 @@
       <v-list>
         <v-list-tile v-for="term in termList" :key="term.id">
           <v-list-tile-title>
-            <router-link :to="'/terminid/' + term.slug">
+            <router-link :to="'/terminid/' + term.slug" class="term-list-item">
               <span class="term-list-item">{{term.pali}}</span>
             </router-link>
           </v-list-tile-title>
@@ -135,6 +135,7 @@
 
 <style scoped>
 .term-list-item {
-  color: rgb(205,90,7)
+  color: rgb(205,90,7);
+  text-decoration: none
 }
 </style>
