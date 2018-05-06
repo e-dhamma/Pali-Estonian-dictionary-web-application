@@ -77,13 +77,14 @@ export default {
       }
       API.addComment(comment).then(() => {
         comment.preview = true
+        this.$emit('commentAdded', comment)
         // this.term.comment_set.push(comment)
       }).catch(() => {
         alert('Tekkis viga. Sinu kommentaar ei salvestunud.')
       })
       this.author = ''
       this.email = ''
-      this.content = ''
+      this.message = ''
     }
   }
 }

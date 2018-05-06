@@ -44,7 +44,7 @@
 
         <!-- Add comment form-->
         <hr>
-        <comment-form :termID="term.id"></comment-form>
+        <comment-form :termID="term.id" @commentAdded="showComment($event)"></comment-form>
         <!-- Translator's discussion
         <v-expansion-panel>
             <v-expansion-panel-content>
@@ -107,6 +107,9 @@ export default {
       this.author = ''
       this.email = ''
       this.content = ''
+    },
+    showComment (comment) {
+      this.term.comment_set.push(comment)
     }
   }
 }
