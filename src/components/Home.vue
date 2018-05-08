@@ -1,10 +1,22 @@
 <<template>
     <v-container>
 
-      <v-layout row class='mt-4'>
+      <v-layout row class='mt-5'>
             <v-flex class='text-xs-center'>
-                <img src='https://upload.wikimedia.org/wikipedia/commons/d/df/Dharma_Wheel.svg' width='150'>
+              <img src="/static/img/DharmaWheel.827aa0e.png" alt="logo" width='150'>
             </v-flex>
+      </v-layout>
+
+      <v-layout row wrap align-center>
+        <v-flex>
+          <v-text-field
+          value="Otsi"
+          style="float:left">
+          </v-text-field>
+        </v-flex>
+        <v-flex>
+          <v-btn color="primary"><v-icon>search</v-icon></v-btn>
+        </v-flex>
       </v-layout>
 
       <v-layout row wrap class='mt-2'>
@@ -26,11 +38,14 @@
 
       </v-layout>
 
-    </v-container>  
+    </v-container>
 </template>
 
 <style scoped>
-    .intro {
-        font-size: 1.3em;
-    }
+  .intro {
+    font-size: 1.3em;
+  }
+  .btn {
+    min-width: 40px;
+  }
 </style>
