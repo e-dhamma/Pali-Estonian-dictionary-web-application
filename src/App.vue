@@ -1,24 +1,7 @@
 <template>
   <v-app>
     <!-- Term-list -->
-    <v-navigation-drawer
-      :clipped="$vuetify.breakpoint.lgAndUp"
-      v-model="drawer"
-      fixed
-      app
-      width="200"
-      class="brown lighten-5"
-    >
-      <v-list>
-        <v-list-tile v-for="term in termList" :key="term.id">
-          <v-list-tile-title>
-            <router-link :to="'/terminid/' + term.slug" class="term-list-item">
-              <span class="term-list-item">{{term.pali}}</span>
-            </router-link>
-          </v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
+    <navigation-drawer></navigation-drawer>
     <!-- Toolbar -->
     <v-toolbar
       :clipped-left="$vuetify.breakpoint.lgAndUp"
@@ -83,6 +66,7 @@
 </template>
 
 <script>
+  import NavigationDrawer from './components/NavigationDrawer'
   export default {
     data () {
       return {
@@ -102,13 +86,8 @@
         // ]
       }
     },
-    created () {
-      this.$store.dispatch('addTermList')
-    },
-    computed: {
-      termList () {
-        return this.$store.getters.termList
-      }
+    components: {
+      'navigation-drawer': NavigationDrawer
     },
     methods: {
       showNotification (notification) {
@@ -132,10 +111,3 @@
     }
   }
 </script>
-
-<style scoped>
-.term-list-item {
-  color: #cd5a07;
-  text-decoration: none
-}
-</style>
