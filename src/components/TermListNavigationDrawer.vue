@@ -42,4 +42,7 @@
   color: #cd5a07;
   text-decoration: none
 }
+::-webkit-scrollbar {
+    display: none;
+}
 </style>
