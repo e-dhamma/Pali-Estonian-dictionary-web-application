@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <!-- Term-list -->
-    <navigation-drawer></navigation-drawer>
+    <term-list-navigation-drawer></term-list-navigation-drawer>
     <!-- Toolbar -->
     <v-toolbar
       :clipped-left="$vuetify.breakpoint.lgAndUp"
@@ -67,7 +67,7 @@
 </template>
 
 <script>
-  import NavigationDrawer from './components/NavigationDrawer'
+  import NavigationDrawer from './components/TermListNavigationDrawer'
   export default {
     data () {
       return {
@@ -87,7 +87,7 @@
       }
     },
     components: {
-      'navigation-drawer': NavigationDrawer
+      'term-list-navigation-drawer': NavigationDrawer
     },
     methods: {
       showNotification (notification) {
