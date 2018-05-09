@@ -1,33 +1,17 @@
 <template>
   <v-app>
     <!-- Term-list -->
-    <v-navigation-drawer
-      :clipped="$vuetify.breakpoint.lgAndUp"
-      v-model="drawer"
-      fixed
-      app
-      width="200"
-      class="brown lighten-5"
-    >
-      <v-list>
-        <v-list-tile v-for="term in termList" :key="term.id">
-          <v-list-tile-title>
-            <router-link :to="'/terminid/' + term.slug" class="term-list-item">
-              <span class="term-list-item">{{term.pali}}</span>
-            </router-link>
-          </v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
+    <term-list-navigation-drawer></term-list-navigation-drawer>
     <!-- Toolbar -->
     <v-toolbar
       :clipped-left="$vuetify.breakpoint.lgAndUp"
       app
       fixed
     >
-      <v-btn icon @click.stop='rightDrawer = !rightDrawer' class='hidden-sm-and-up'>
+      <!-- For navigation drawer on small screens -->
+      <!-- <v-btn icon @click.stop='rightDrawer = !rightDrawer' class='hidden-sm-and-up'>
         <v-icon>menu</v-icon>
-      </v-btn>
+      </v-btn> -->
       <v-toolbar-title class='hidden-xs-only'>
         <v-avatar>
           <img src="../static/DharmaWheel.png" alt="logo">
@@ -83,10 +67,10 @@
 </template>
 
 <script>
+  import NavigationDrawer from './components/TermListNavigationDrawer'
   export default {
     data () {
       return {
-        drawer: null,
         // For snackbar
         snackbar: false,
         notification: '',
@@ -102,13 +86,8 @@
         // ]
       }
     },
-    created () {
-      this.$store.dispatch('addTermList')
-    },
-    computed: {
-      termList () {
-        return this.$store.getters.termList
-      }
+    components: {
+      'term-list-navigation-drawer': NavigationDrawer
     },
     methods: {
       showNotification (notification) {
@@ -132,10 +111,3 @@
     }
   }
 </script>
-
-<style scoped>
-.term-list-item {
-  color: #cd5a07;
-  text-decoration: none
-}
-</style>
