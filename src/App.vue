@@ -8,9 +8,10 @@
       app
       fixed
     >
-      <v-btn icon @click.stop='rightDrawer = !rightDrawer' class='hidden-sm-and-up'>
+      <!-- For navigation drawer on small screens -->
+      <!-- <v-btn icon @click.stop='rightDrawer = !rightDrawer' class='hidden-sm-and-up'>
         <v-icon>menu</v-icon>
-      </v-btn>
+      </v-btn> -->
       <v-toolbar-title class='hidden-xs-only'>
         <v-avatar>
           <img src="../static/DharmaWheel.png" alt="logo">
@@ -70,7 +71,6 @@
   export default {
     data () {
       return {
-        drawer: null,
         // For snackbar
         snackbar: false,
         notification: '',
