@@ -60,17 +60,10 @@
       testScroll () { this.autoScrollToViewedTerm(this.slug) },
       autoScrollToViewedTerm (slug) {
         const selectedElement = document.getElementById(slug)
-        console.log(selectedElement)
         if (!selectedElement) {
           return
         }
-        const toolbarHeight = 64
-        this.$refs.termListNavigationDrawer.$el.scrollTop = 445
-        // const nDrawer = this.$refs['termListNavigationDrawer'].$el
         const nDrawer = document.querySelector('#app > div > aside')
-        console.log(nDrawer)
-        // Oskar
-        // topPos = selectedElement.offsetTop-20;
         nDrawer.scrollTop = selectedElement.offsetTop-20
       }
     },
@@ -87,7 +80,7 @@
   color: #cd5a07;
   text-decoration: none
 }
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
     display: none;
-} */
+}
 </style>
