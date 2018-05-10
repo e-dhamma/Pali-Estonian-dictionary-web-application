@@ -14,7 +14,7 @@
       </v-btn> -->
       <v-toolbar-title class='hidden-xs-only'>
         <v-avatar>
-          <img src="../static/DharmaWheel.png" alt="logo">
+          <img src="../static/DharmaWheel.svg" alt="dhamma-wheel">
         </v-avatar>
         <router-link to='/' tag='span' style='cursor: pointer'>Paali-Eesti sõnaraamat</router-link>
       </v-toolbar-title>

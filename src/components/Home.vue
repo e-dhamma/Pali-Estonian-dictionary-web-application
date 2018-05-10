@@ -26,7 +26,7 @@
 
       </v-layout>
 
-    </v-container>  
+    </v-container>
 </template>
 
 <style scoped>
