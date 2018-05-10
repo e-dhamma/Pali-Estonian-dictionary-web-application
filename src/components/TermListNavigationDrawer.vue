@@ -7,30 +7,12 @@
     width="200"
     class="brown lighten-5"
   >
+    <v-btn @click="testScroll()">Scroll</v-btn>
     <v-list ref="termListNavigationDrawer">
-      <!-- <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
       <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
       <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
       <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
       <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile> -->
       <v-list-tile v-for="term in termList" :key="term.id" :id="term.slug">
         <v-list-tile-title :id="term.slug">
           <router-link :to="'/terminid/' + term.slug" class="term-list-item">
@@ -38,33 +20,58 @@
           </router-link>
         </v-list-tile-title>
       </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script>
+  import { bus } from '../main.js'
   export default {
     data () {
       return {
-        drawer: null
+        drawer: null,
+        slug: ''
       }
     },
     created () {
       this.$store.dispatch('addTermList')
-    },
-    updated () {
-      this.autoScrollToViewedTerm('buddha')
+      bus.$on('termChange', (slug) => { this.slug = slug })
     },
     methods: {
+      testScroll () { this.autoScrollToViewedTerm(this.slug) },
       autoScrollToViewedTerm (slug) {
         const selectedElement = document.getElementById(slug)
+        console.log(selectedElement)
         if (!selectedElement) {
           return
         }
         const toolbarHeight = 64
         this.$refs.termListNavigationDrawer.$el.scrollTop = 445
-        console.log(selectedElement)
-        console.log(this.$refs['termListNavigationDrawer'].$el);
+        // const nDrawer = this.$refs['termListNavigationDrawer'].$el
+        const nDrawer = document.querySelector('#app > div > aside')
+        console.log(nDrawer)
+        // Oskar
+        // topPos = selectedElement.offsetTop-20;
+        nDrawer.scrollTop = selectedElement.offsetTop-20
       }
     },
     computed: {
@@ -72,7 +79,6 @@
         return this.$store.getters.termList
       }
     }
-
   }
 </script>
 
@@ -81,7 +87,7 @@
   color: #cd5a07;
   text-decoration: none
 }
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     display: none;
-}
+} */
 </style>
