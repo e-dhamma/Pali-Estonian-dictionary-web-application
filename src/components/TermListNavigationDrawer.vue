@@ -65,7 +65,7 @@
           return
         }
         const nDrawer = document.querySelector('#app > div > aside')
-        nDrawer.scrollTop = selectedElement.offsetTop-20
+        nDrawer.scrollTop = selectedElement.offsetTop - 20
       },
       highlightSelectedElement (selectedElement) {
         // Remove highlight class from previous term

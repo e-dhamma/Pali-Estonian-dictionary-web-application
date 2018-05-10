@@ -52,7 +52,7 @@ export default {
   created () {
     API.getTerm(this.slug).then(response => { this.term = response.data })
   },
-    props: ['slug'],
+  props: ['slug'],
   mounted () {
     bus.$emit('termChange', this.slug)
   },
