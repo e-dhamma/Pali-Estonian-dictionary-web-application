@@ -60,11 +60,15 @@
       testScroll () { this.autoScrollToViewedTerm(this.slug) },
       autoScrollToViewedTerm (slug) {
         const selectedElement = document.getElementById(slug)
+        this.highlightSelectedElement(selectedElement)
         if (!selectedElement) {
           return
         }
         const nDrawer = document.querySelector('#app > div > aside')
         nDrawer.scrollTop = selectedElement.offsetTop-20
+      },
+      highlightSelectedElement (selectedElement) {
+        selectedElement.classList.add('selected-term')
       }
     },
     computed: {
@@ -84,3 +88,11 @@
     display: none;
 }
 </style>
+
+<style>
+.selected-term div a span{
+  color: navy  !important;
+  font-weight: 900;
+}
+</style>
+
