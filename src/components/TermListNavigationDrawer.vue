@@ -68,6 +68,12 @@
         nDrawer.scrollTop = selectedElement.offsetTop-20
       },
       highlightSelectedElement (selectedElement) {
+        // Remove highlight class from previous term
+        const previousTerm = document.getElementsByClassName('selected-term')[0]
+        if (previousTerm) {
+          previousTerm.classList.remove('selected-term')
+        }
+        // Add highlight class to new term
         selectedElement.classList.add('selected-term')
       }
     },
