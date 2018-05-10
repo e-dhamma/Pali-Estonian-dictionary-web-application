@@ -45,13 +45,17 @@
 </template>
 
 <script>
+import { bus } from '../main.js'
 import { API } from '../api'
 import CommentForm from './CommentForm'
 export default {
   created () {
     API.getTerm(this.slug).then(response => { this.term = response.data })
   },
-  props: ['slug'],
+    props: ['slug'],
+  mounted () {
+    bus.$emit('termChange', this.slug)
+  },
   data () {
     return {
       term: { comment_set: [] }
