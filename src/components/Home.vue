@@ -8,15 +8,19 @@
         </v-flex>
       </v-layout>
 
-      <v-layout row wrap align-center>
-        <v-flex>
+      <v-layout>
+        <v-flex xs12 sm8 offset-sm2>
+          <v-layout>
+            <v-flex xs11>
           <v-text-field
           value="Otsi"
           style="float:left">
           </v-text-field>
         </v-flex>
-        <v-flex>
+            <v-flex xs1>
           <v-btn color="primary"><v-icon>search</v-icon></v-btn>
+        </v-flex>
+      </v-layout>
         </v-flex>
       </v-layout>
 
