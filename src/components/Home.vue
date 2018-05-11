@@ -4,7 +4,7 @@
 
       <v-layout row class='mt-5'>
         <v-flex class='text-xs-center'>
-          <img src="/static/img/DharmaWheel.827aa0e.png" alt="logo" width='150'>
+          <img src="/static/img/DharmaWheel.b2a7dc4.svg" alt="logo" width='150'>
         </v-flex>
       </v-layout>
 
