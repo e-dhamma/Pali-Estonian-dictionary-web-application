@@ -18,8 +18,10 @@
       <!-- Spacer -->
       <div style="width: 85px;"></div>
       <!-- Search -->
-      <v-text-field label="Otsi" v-model="searchInput" @keyup.enter.native="searchTerm" ></v-text-field>
-      <v-btn icon @click="searchTerm" color="primary"><v-icon>search</v-icon></v-btn>
+      <template v-if="!isHomepage">
+        <v-text-field label="Otsi" v-model="searchInput" @keyup.enter.native="searchTerm" ></v-text-field>
+        <v-btn icon @click="searchTerm" color="primary"><v-icon>search</v-icon></v-btn>
+      </template>
       <v-spacer></v-spacer>
       <!-- <v-btn
       flat
@@ -33,9 +35,6 @@
 <script>
 import { bus } from '../main.js'
 export default {
-  created () {
-    bus.$on('homepage', () => { console.log('homepage') })
-  },
   data () {
     return {
       searchInput: ''
@@ -47,6 +46,13 @@ export default {
       //   { icon: 'notifications', title: 'Teavitused', link: '' },
       //   { icon: 'account_circle', title: 'Logi sisse', link: '' }
       // ]
+    }
+  },
+  computed: {
+    isHomepage () {
+      var path = this.$route.path
+      if (path === '/') { return true }
+      return false
     }
   },
   methods: {

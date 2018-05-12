@@ -30,10 +30,10 @@
       <v-btn flat color="pink" @click.native="snackbar = false">Sulge</v-btn>
     </v-snackbar>
 
-  <!-- Main content -->
-  <v-content>
-    <router-view :key="$route.fullPath"></router-view>
-  </v-content>
+    <!-- Main content -->
+    <v-content>
+      <router-view :key="$route.fullPath"></router-view>
+    </v-content>
 
   </v-app>
 </template>
