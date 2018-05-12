@@ -15,6 +15,7 @@
           <v-text-field
           label="Otsi"
           v-model="searchInput"
+          @keyup.enter.native="searchTerm"
           style="float:left">
           </v-text-field>
         </v-flex>

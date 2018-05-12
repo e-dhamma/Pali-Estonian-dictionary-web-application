@@ -19,7 +19,7 @@
       <div style="width: 85px;"></div>
       <!-- Search -->
       <template v-if="!isHomepage">
-        <v-text-field label="Otsi" v-model="searchInput" @keyup.enter.native="searchTerm" ></v-text-field>
+        <v-text-field label="Otsi" v-model="searchInput" @keyup.enter.native="searchTerm"></v-text-field>
         <v-btn icon @click="searchTerm" color="primary"><v-icon>search</v-icon></v-btn>
       </template>
       <v-spacer></v-spacer>
