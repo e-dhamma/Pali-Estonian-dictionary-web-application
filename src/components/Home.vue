@@ -61,3 +61,11 @@
     min-width: 40px;
   }
 </style>
+
+<script>
+import { bus } from '../main.js'
+export default {
+  created () { bus.$emit('homepage') }
+}
+</script>
+

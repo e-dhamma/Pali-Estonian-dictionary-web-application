@@ -41,14 +41,13 @@
 <script>
   import NavigationDrawer from './components/TermListNavigationDrawer'
   import Toolbar from './components/Toolbar'
+  import { bus } from './main.js'
   export default {
     data () {
       return {
         // For snackbar
         snackbar: false,
-        notification: '',
-        // For search
-        searchInput: ''
+        notification: ''
         // // For navigation drawer for small screen
         // rightDrawer: false,
         // // Toolbar buttons
@@ -59,6 +58,9 @@
         // ]
       }
     },
+    created () {
+      bus.$on('showNotification', (notification) => { this.showNotification(notification) })
+    },
     components: {
       'term-list-navigation-drawer': NavigationDrawer,
       'toolbar': Toolbar
@@ -67,20 +69,6 @@
       showNotification (notification) {
         this.notification = notification
         this.snackbar = true
-      },
-      searchTerm () {
-        if (this.searchInput === '') { return null }
-        const results = this.$store.getters.searchForTerm(this.searchInput)
-        if (results.length === 0) {
-          this.showNotification('Otsing ei andnud tulemusi.')
-          return null
-        } else if (results.length === 1) {
-          this.$router.push({ name: 'Term', params: { slug: results[0].slug } })
-        } else if (results.length > 1) {
-          this.$store.dispatch('addSearchResults', results)
-          this.$router.push({ name: 'SearchResults' })
-        }
-        this.searchInput = ''
       }
     }
   }
