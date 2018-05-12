@@ -34,6 +34,7 @@
     <v-content>
       <router-view :key="$route.fullPath"></router-view>
     </v-content>
+    <search></search> <!-- This component does not have a template, only methods -->
 
   </v-app>
 </template>
@@ -41,6 +42,7 @@
 <script>
   import NavigationDrawer from './components/TermListNavigationDrawer'
   import Toolbar from './components/Toolbar'
+  import Search from './components/Search'
   import { bus } from './main.js'
   export default {
     data () {
@@ -63,7 +65,8 @@
     },
     components: {
       'term-list-navigation-drawer': NavigationDrawer,
-      'toolbar': Toolbar
+      'toolbar': Toolbar,
+      'search': Search
     },
     methods: {
       showNotification (notification) {

@@ -13,7 +13,7 @@
           <v-layout>
             <v-flex xs11>
           <v-text-field
-          value="Otsi"
+          label="Otsi"
           style="float:left">
           </v-text-field>
         </v-flex>

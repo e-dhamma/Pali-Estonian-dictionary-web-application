@@ -58,16 +58,7 @@ export default {
   methods: {
     searchTerm () {
       if (this.searchInput === '') { return null }
-      const results = this.$store.getters.searchForTerm(this.searchInput)
-      if (results.length === 0) {
-        bus.$emit('showNotification', 'Otsing ei andnud tulemusi.')
-        return null
-      } else if (results.length === 1) {
-        this.$router.push({ name: 'Term', params: { slug: results[0].slug } })
-      } else if (results.length > 1) {
-        this.$store.dispatch('addSearchResults', results)
-        this.$router.push({ name: 'SearchResults' })
-      }
+      bus.$emit('searchTerm', this.searchInput)
       this.searchInput = ''
     }
   }
