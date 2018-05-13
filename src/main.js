@@ -25,6 +25,8 @@ Vue.use(Vuetify, { theme: {
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
+export const bus = new Vue()
+
 new Vue({
   el: '#app',
   router,

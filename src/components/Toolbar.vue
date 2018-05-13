@@ -18,8 +18,10 @@
       <!-- Spacer -->
       <div style="width: 85px;"></div>
       <!-- Search -->
-      <v-text-field label="Otsi" v-model="searchInput" @keyup.enter.native="searchTerm" ></v-text-field>
-      <v-btn icon @click="searchTerm" color="primary"><v-icon>search</v-icon></v-btn>
+      <template v-if="!isHomepage">
+        <v-text-field label="Otsi" v-model="searchInput" @keyup.enter.native="searchTerm"></v-text-field>
+        <v-btn icon @click="searchTerm" color="primary"><v-icon>search</v-icon></v-btn>
+      </template>
       <v-spacer></v-spacer>
       <!-- <v-btn
       flat
@@ -29,3 +31,36 @@
       </v-btn> -->
   </v-toolbar>
 </template>
+
+<script>
+import { bus } from '../main.js'
+export default {
+  data () {
+    return {
+      searchInput: ''
+      // // For navigation drawer for small screen
+      // rightDrawer: false,
+      // // Toolbar buttons
+      // menueItems: [
+      //   { icon: 'toc', title: 'Rohkem', link: '' },
+      //   { icon: 'notifications', title: 'Teavitused', link: '' },
+      //   { icon: 'account_circle', title: 'Logi sisse', link: '' }
+      // ]
+    }
+  },
+  computed: {
+    isHomepage () {
+      var path = this.$route.path
+      if (path === '/') { return true }
+      return false
+    }
+  },
+  methods: {
+    searchTerm () {
+      if (this.searchInput === '') { return null }
+      bus.$emit('searchTerm', this.searchInput)
+      this.searchInput = ''
+    }
+  }
+}
+</script>

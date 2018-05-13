@@ -13,12 +13,14 @@
           <v-layout>
             <v-flex xs11>
           <v-text-field
-          value="Otsi"
+          label="Otsi"
+          v-model="searchInput"
+          @keyup.enter.native="searchTerm"
           style="float:left">
           </v-text-field>
         </v-flex>
             <v-flex xs1>
-          <v-btn color="primary"><v-icon>search</v-icon></v-btn>
+          <v-btn color="primary" @click="searchTerm()"><v-icon>search</v-icon></v-btn>
         </v-flex>
       </v-layout>
         </v-flex>
@@ -52,6 +54,24 @@
 
   </div>
 </template>
+
+<script>
+import { bus } from '../main.js'
+export default {
+  data () {
+    return {
+      searchInput: ''
+    }
+  },
+  methods: {
+    searchTerm () {
+      if (this.searchInput === '') { return null }
+      bus.$emit('searchTerm', this.searchInput)
+      this.searchInput = ''
+    }
+  }
+}
+</script>
 
 <style scoped>
   .intro {

@@ -7,27 +7,75 @@
     width="200"
     class="brown lighten-5"
   >
-    <v-list>
-      <v-list-tile v-for="term in termList" :key="term.id">
-        <v-list-tile-title>
+    <v-btn @click="testScroll()">Scroll</v-btn>
+    <v-list ref="termListNavigationDrawer">
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile v-for="term in termList" :key="term.id" :id="term.slug">
+        <v-list-tile-title :id="term.slug">
           <router-link :to="'/terminid/' + term.slug" class="term-list-item">
-            <span class="term-list-item">{{term.pali}}</span>
+            <span class="term-list-item" :id="term.slug">{{term.pali}}</span>
           </router-link>
         </v-list-tile-title>
       </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script>
+  import { bus } from '../main.js'
   export default {
     data () {
       return {
-        drawer: null
+        drawer: null,
+        slug: ''
       }
     },
     created () {
       this.$store.dispatch('addTermList')
+      bus.$on('termChange', (slug) => { this.slug = slug })
+    },
+    methods: {
+      testScroll () { this.autoScrollToViewedTerm(this.slug) },
+      autoScrollToViewedTerm (slug) {
+        const selectedElement = document.getElementById(slug)
+        this.highlightSelectedElement(selectedElement)
+        if (!selectedElement) {
+          return
+        }
+        const nDrawer = document.querySelector('#app > div > aside')
+        nDrawer.scrollTop = selectedElement.offsetTop - 20
+      },
+      highlightSelectedElement (selectedElement) {
+        // Remove highlight class from previous term
+        const previousTerm = document.getElementsByClassName('selected-term')[0]
+        if (previousTerm) {
+          previousTerm.classList.remove('selected-term')
+        }
+        // Add highlight class to new term
+        selectedElement.classList.add('selected-term')
+      }
     },
     computed: {
       termList () {
@@ -46,3 +94,11 @@
     display: none;
 }
 </style>
+
+<style>
+.selected-term div a span{
+  color: navy  !important;
+  font-weight: 900;
+}
+</style>
+
