@@ -35,15 +35,6 @@
         </v-flex>
       </v-layout>
 
-      <v-layout row wrap class='mt-2'>
-        <v-flex class='text-xs-center text-sm-right'>
-          <v-btn  to="/kasutajale">Teave kasutajale</v-btn>
-        </v-flex>
-        <v-flex class='text-xs-center text-sm-left'>
-          <v-btn  to="/">Teine nupp</v-btn>
-        </v-flex>
-      </v-layout>
-
     </v-container>
 
     <v-footer inset app>
