@@ -19,7 +19,7 @@
                       <v-card>
                           <v-card-text class="grey lighten-4">
                               <p>{{ meaning.further }}</p>
-                              <h4>Tõlkenäited:</h4>
+                              <template v-if="meaning.example_set.length != 0"><h4>Tõlkenäited:</h4></template>
                               <div>
                                   <p v-for='example in meaning.example_set' :key='example.original'>
                                       <i>{{ example.original }}</i><br>
@@ -75,7 +75,26 @@ export default {
 </script>
 
 <style scoped>
-.comment-section-header {
-  font-weight: normal
-}
+  .comment-section-header {
+    font-weight: normal
+  }
+  /* Styles term's further information expansion-panel */
+  .expansion-panel {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+  .theme--light .expansion-panel .expansion-panel__container, .application .theme--light.expansion-panel .expansion-panel__container {
+    background-color: inherit;
+  }
+  #app > div > main > div > div > div.layout.mt-3 > div > ul > li > div.expansion-panel__header > div:nth-child(1) {
+    color: #cd5a07; /* primary */
+  }
 </style>
+
+<style>
+  /* Styles term's further information expansion-panel */
+  .expansion-panel__header {
+    padding-left: inherit;
+  }
+</style>
+
