@@ -19,7 +19,7 @@
                       <v-card>
                           <v-card-text class="grey lighten-4">
                               <p>{{ meaning.further }}</p>
-                              <h4>Tõlkenäited:</h4>
+                              <template v-if="meaning.example_set.length != 0"><h4>Tõlkenäited:</h4></template>
                               <div>
                                   <p v-for='example in meaning.example_set' :key='example.original'>
                                       <i>{{ example.original }}</i><br>
