@@ -13,23 +13,25 @@
               <h3>{{ i + 1}}. {{ meaning.est }}<template v-if="meaning.root"> [{{ meaning.rootLang }} <i>{{ meaning.root }}</i><template v-if="meaning.rootDescription"> ({{ meaning.rootDescription}})</template>]</template></h3>
               <template v-if="meaning.eng"><p>eng {{ meaning.eng }}</p></template>
               <p>{{ meaning.expl }}</p>
-              <v-expansion-panel>
-                  <v-expansion-panel-content>
-                      <div slot="header">Täpsemalt</div>
-                      <v-card>
-                          <v-card-text class="grey lighten-4">
-                              <p>{{ meaning.further }}</p>
-                              <template v-if="meaning.example_set.length != 0"><h4>Tõlkenäited:</h4></template>
-                              <div>
-                                  <p v-for='example in meaning.example_set' :key='example.original'>
-                                      <i>{{ example.original }}</i><br>
-                                      {{ example.translation }}
-                                  </p>
-                              </div>
-                          </v-card-text>
-                      </v-card>
-                  </v-expansion-panel-content>
-              </v-expansion-panel>
+              <template v-if="meaning.further || meaning.example_set.length != 0">
+                  <v-expansion-panel>
+                    <v-expansion-panel-content>
+                        <div slot="header">Täpsemalt</div>
+                        <v-card>
+                            <v-card-text class="grey lighten-4">
+                                <p>{{ meaning.further }}</p>
+                                <template v-if="meaning.example_set.length != 0"><h4>Tõlkenäited:</h4></template>
+                                <div>
+                                    <p v-for='example in meaning.example_set' :key='example.original'>
+                                        <i>{{ example.original }}</i><br>
+                                        {{ example.translation }}
+                                    </p>
+                                </div>
+                            </v-card-text>
+                        </v-card>
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
+              </template>
           </v-flex>
       </v-layout>
       <!-- Comments-->
