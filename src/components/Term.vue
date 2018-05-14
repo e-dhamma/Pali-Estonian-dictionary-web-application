@@ -18,7 +18,7 @@
                     <v-expansion-panel-content>
                         <div slot="header" class="further-explanation">Täpsemalt</div>
                         <v-card>
-                            <v-card-text class="grey lighten-4">
+                            <v-card-text style="background-color: #f4f1ef">
                                 <p>{{ meaning.further }}</p>
                                 <template v-if="meaning.example_set.length != 0"><h4>Tõlkenäited:</h4></template>
                                 <div>
@@ -42,7 +42,7 @@
                 <v-expansion-panel-content>
                     <div slot="header" id="pls-header">Selgitus <i>Pali Text Society</i> sõnaraamatus</div>
                     <v-card>
-                        <v-card-text class="grey lighten-4">
+                        <v-card-text style="background-color: #f4f1ef">
                             <p>{{ term.def_in_PLS_dict }}</p>
                         </v-card-text>
                     </v-card>
