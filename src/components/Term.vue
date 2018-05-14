@@ -10,8 +10,8 @@
       <!-- term meanings -->
       <v-layout v-for='(meaning, i) in term.meaning_set' :key='i' class='mt-3'>
           <v-flex>
-              <h3>{{ i + 1}}. {{ meaning.est }} [{{ meaning.rootLang }} <i>{{ meaning.root }}</i> ({{ meaning.rootDescription}})]</h3>
-              <p>eng {{ meaning.eng }}</p>
+              <h3>{{ i + 1}}. {{ meaning.est }}<template v-if="meaning.root"> [{{ meaning.rootLang }} <i>{{ meaning.root }}</i><template v-if="meaning.rootDescription"> ({{ meaning.rootDescription}})</template>]</template></h3>
+              <template v-if="meaning.eng"><p>eng {{ meaning.eng }}</p></template>
               <p>{{ meaning.expl }}</p>
               <v-expansion-panel>
                   <v-expansion-panel-content>
