@@ -14,8 +14,9 @@
       <v-flex xs12 sm4>
         <v-text-field
           name="email"
-          label="E-mail (ei kuvata avalikult)"
+          label="E-mail"
           id='email'
+          hint="Ei kuvata avalikult"
           v-model='email'
           required
         ></v-text-field>
