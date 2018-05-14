@@ -34,6 +34,23 @@
               </template>
           </v-flex>
       </v-layout>
+      <!-- Term definition in the Pali Text Society dictionary -->
+      <template v-if="term.def_in_PLS_dict">
+        <v-layout>
+          <v-flex>
+            <v-expansion-panel>
+                <v-expansion-panel-content>
+                    <div slot="header" id="pls-header">Selgitus <i>Pali Text Society</i> sõnaraamatus</div>
+                    <v-card>
+                        <v-card-text class="grey lighten-4">
+                            <p>{{ term.def_in_PLS_dict }}</p>
+                        </v-card-text>
+                    </v-card>
+                </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-flex>
+        </v-layout>
+      </template>
       <!-- Comments-->
       <h2 class='comment-section-header mt-4'>{{numberOfApprovedComments}} kommentaar<template v-if="numberOfApprovedComments != 1">i</template></h2>
       <hr>
@@ -94,6 +111,10 @@ export default {
   }
   #app > div > main > div > div > div.layout.mt-3 > div > ul > li > div.expansion-panel__header > div:nth-child(1) {
     color: #cd5a07; /* primary */
+  }
+  #pls-header {
+    color: #cd5a07; /* primary */
+
   }
 </style>
 
