@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-layout mt-3><v-flex><h3>Lisa uus kommentar</h3></v-flex></v-layout>
+    <v-layout mt-3><v-flex><h2 class="form-header">Lisa uus kommentar</h2></v-flex></v-layout>
     <v-layout row>
       <v-flex xs12 sm4>
         <v-text-field
@@ -90,3 +90,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .form-header {
+    font-weight: normal
+  }
+
+</style>
