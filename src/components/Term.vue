@@ -16,7 +16,7 @@
               <template v-if="meaning.further || meaning.example_set.length != 0">
                   <v-expansion-panel>
                     <v-expansion-panel-content>
-                        <div slot="header">Täpsemalt</div>
+                        <div slot="header" class="further-explanation">Täpsemalt</div>
                         <v-card>
                             <v-card-text class="grey lighten-4">
                                 <p>{{ meaning.further }}</p>
@@ -109,7 +109,7 @@ export default {
   .theme--light .expansion-panel .expansion-panel__container, .application .theme--light.expansion-panel .expansion-panel__container {
     background-color: inherit;
   }
-  #app > div > main > div > div > div.layout.mt-3 > div > ul > li > div.expansion-panel__header > div:nth-child(1) {
+  .further-explanation {
     color: #cd5a07; /* primary */
   }
   #pls-header {
