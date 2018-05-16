@@ -9,7 +9,7 @@
   >
     <v-btn @click="testScroll()">Scroll</v-btn>
     <v-list ref="termListNavigationDrawer">
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>fooooooooooooooooooooooooooooo</v-list-tile-title> </v-list-tile>
       <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
       <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
       <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
@@ -53,29 +53,32 @@
       }
     },
     created () {
-      this.$store.dispatch('addTermList')
-      bus.$on('termChange', (slug) => { this.slug = slug })
+      this.$store.dispatch('addTermList').then(() => { this.autoScrollToViewedTerm(this.slug) })
+      bus.$on('termChange', (slug) => {
+        this.slug = slug
+        this.autoScrollToViewedTerm(this.slug)
+      })
     },
     methods: {
       testScroll () { this.autoScrollToViewedTerm(this.slug) },
       autoScrollToViewedTerm (slug) {
         const selectedElement = document.getElementById(slug)
         this.removeHighlightFromPreviousTerm()
-        this.highlightSelectedElement(selectedElement)
         if (!selectedElement) {
           return
         }
+        this.highlightSelectedElement(selectedElement)
         const nDrawer = document.querySelector('#app > div > aside')
         nDrawer.scrollTop = selectedElement.offsetTop - 20
       },
-      removeHighlightFromPreviousTerm() {
+      removeHighlightFromPreviousTerm () {
         const previousTerm = document.getElementsByClassName('selected-term')[0] // perhaps 'selected-term' should be an id, not class
         if (previousTerm) {
           previousTerm.classList.remove('selected-term')
         }
       },
       highlightSelectedElement (selectedElement) {
-        selectedElement.classList.add('selected-term')
+        selectedElement.classList.add('selected-term') // add if block currently on line 67
       }
     },
     computed: {
