@@ -60,6 +60,7 @@
       testScroll () { this.autoScrollToViewedTerm(this.slug) },
       autoScrollToViewedTerm (slug) {
         const selectedElement = document.getElementById(slug)
+        this.removeHighlightFromPreviousTerm()
         this.highlightSelectedElement(selectedElement)
         if (!selectedElement) {
           return
@@ -67,13 +68,13 @@
         const nDrawer = document.querySelector('#app > div > aside')
         nDrawer.scrollTop = selectedElement.offsetTop - 20
       },
-      highlightSelectedElement (selectedElement) {
-        // Remove highlight class from previous term
-        const previousTerm = document.getElementsByClassName('selected-term')[0]
+      removeHighlightFromPreviousTerm() {
+        const previousTerm = document.getElementsByClassName('selected-term')[0] // perhaps 'selected-term' should be an id, not class
         if (previousTerm) {
           previousTerm.classList.remove('selected-term')
         }
-        // Add highlight class to new term
+      },
+      highlightSelectedElement (selectedElement) {
         selectedElement.classList.add('selected-term')
       }
     },
