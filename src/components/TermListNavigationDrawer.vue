@@ -13,6 +13,16 @@
       <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
       <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
       <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
       <v-list-tile v-for="term in termList" :key="term.id" :id="term.slug">
         <v-list-tile-title :id="term.slug">
           <router-link :to="'/terminid/' + term.slug" class="term-list-item">
@@ -69,7 +79,8 @@
         }
         this.highlightSelectedElement(selectedElement)
         const nDrawer = document.querySelector('#app > div > aside')
-        nDrawer.scrollTop = selectedElement.offsetTop - 20
+        console.log(nDrawer.clientHeight)
+        nDrawer.scrollTop = selectedElement.offsetTop - (nDrawer.clientHeight / 2 - selectedElement.clientHeight / 2)
       },
       removeHighlightFromPreviousTerm () {
         const previousTerm = document.getElementsByClassName('selected-term')[0] // perhaps 'selected-term' should be an id, not class
