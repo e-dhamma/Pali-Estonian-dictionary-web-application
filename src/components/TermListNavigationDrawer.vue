@@ -69,6 +69,13 @@
         this.autoScrollToViewedTerm(this.slug)
       })
     },
+    watch: {
+      $route (to, from) {
+        if (to.path === '/') {
+          this.onHomepage()
+        }
+      }
+    },
     methods: {
       testScroll () { this.autoScrollToViewedTerm(this.slug) },
       autoScrollToViewedTerm (slug) {
@@ -79,8 +86,12 @@
         }
         this.highlightSelectedElement(selectedElement)
         const nDrawer = document.querySelector('#app > div > aside')
-        console.log(nDrawer.clientHeight)
         nDrawer.scrollTop = selectedElement.offsetTop - (nDrawer.clientHeight / 2 - selectedElement.clientHeight / 2)
+      },
+      onHomepage () {
+        this.removeHighlightFromPreviousTerm()
+        const nDrawer = document.querySelector('#app > div > aside')
+        nDrawer.scrollTop = 0
       },
       removeHighlightFromPreviousTerm () {
         const previousTerm = document.getElementsByClassName('selected-term')[0] // perhaps 'selected-term' should be an id, not class
