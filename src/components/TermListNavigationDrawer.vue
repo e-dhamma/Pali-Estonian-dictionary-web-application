@@ -7,22 +7,7 @@
     width="200"
     class="brown lighten-5"
   >
-    <v-btn @click="testScroll()">Scroll</v-btn>
-    <v-list ref="termListNavigationDrawer">
-      <v-list-tile><v-list-tile-title>fooooooooooooooooooooooooooooo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
+    <v-list>
       <v-list-tile v-for="term in termList" :key="term.id" :id="term.slug">
         <v-list-tile-title :id="term.slug">
           <router-link :to="'/terminid/' + term.slug" class="term-list-item">
@@ -30,44 +15,35 @@
           </router-link>
         </v-list-tile-title>
       </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
-      <v-list-tile><v-list-tile-title>foo</v-list-tile-title> </v-list-tile>
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script>
   import { bus } from '../main.js'
+  import { API } from '../api'
   export default {
     data () {
       return {
+        termList: [],
         drawer: null,
         slug: ''
       }
     },
-    created () {
-      this.$store.dispatch('addTermList').then(() => { this.autoScrollToViewedTerm(this.slug) })
+    async created () {
       bus.$on('termChange', (slug) => {
         this.slug = slug
         this.autoScrollToViewedTerm(this.slug)
       })
+      try {
+        const termList = await API.getTermList()
+        await this.$store.dispatch('addTermList', termList.data)
+        this.termList = termList.data
+        await this.$nextTick()
+        this.autoScrollToViewedTerm(this.slug)
+      } catch (error) {
+        console.log(error)
+      }
     },
     watch: {
       $route (to, from) {
@@ -77,7 +53,6 @@
       }
     },
     methods: {
-      testScroll () { this.autoScrollToViewedTerm(this.slug) },
       autoScrollToViewedTerm (slug) {
         const selectedElement = document.getElementById(slug)
         this.removeHighlightFromPreviousTerm()
@@ -101,11 +76,6 @@
       },
       highlightSelectedElement (selectedElement) {
         selectedElement.classList.add('selected-term') // add if block currently on line 67
-      }
-    },
-    computed: {
-      termList () {
-        return this.$store.getters.termList
       }
     }
   }

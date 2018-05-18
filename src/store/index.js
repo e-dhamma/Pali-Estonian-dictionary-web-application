@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { API } from '../api'
 
 Vue.use(Vuex)
 
@@ -19,19 +18,15 @@ export const store = new Vuex.Store({
         var itemB = b.pali.toUpperCase()
         return (itemA < itemB) ? -1 : (itemA > itemB) ? 1 : 0
       })
-      state.loadedTermList = state.loadedTermList.concat(termList)
+      state.loadedTermList = termList
     },
     addSearchResults (state, results) {
       state.searchResults = results
     }
   },
   actions: {
-    addTermList ({commit}) {
-      API.getTermList()
-      .then((response) => {
-        commit('addTermList', response.data)
-      })
-      .catch((error) => { console.log(error) })
+    addTermList ({commit}, termList) {
+      commit('addTermList', termList)
     },
     addSearchResults ({commit}, results) {
       commit('addSearchResults', results)
