@@ -12,7 +12,7 @@
       <v-avatar>
         <img src="../../static/DharmaWheel.svg" alt="dhamma-wheel">
       </v-avatar>
-      <router-link to='/' tag='span' style='cursor: pointer'>Paali-Eesti sõnaraamat</router-link>
+      <router-link to='/' tag='span' style='cursor: pointer'>Paali-eesti sõnaraamat</router-link>
     </v-toolbar-title>
 
       <!-- Spacer -->
