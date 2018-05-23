@@ -4,11 +4,14 @@
 
       <v-layout row class='mt-5'>
         <v-flex class='text-xs-center'>
-          <img src="/static/img/DharmaWheel.b2a7dc4.svg" alt="logo" width='150'>
+          <div id="logo-box">
+            <img src="/static/img/DharmaWheel.b2a7dc4.svg" alt="logo" width='150'>
+            <span id='logoText'>Paali-eesti sõnaraamat</span>
+          </div>
         </v-flex>
       </v-layout>
 
-      <v-layout>
+      <v-layout class='mt-4'>
         <v-flex xs12 sm8 offset-sm2>
           <v-layout>
             <v-flex xs11>
@@ -70,5 +73,17 @@ export default {
   }
   .btn {
     min-width: 40px;
+  }
+  #logo-box {
+    display: inline-block;
+  }
+  img {
+    vertical-align: middle;
+  }
+  #logoText {
+    display: inline-block;
+    vertical-align: middle;
+    color: #cd5a07;
+    font-size: 3.2em;
   }
 </style>
